@@ -1,6 +1,6 @@
-update=2016-03-20 22:06:02
+update=2016-04-19 21:56:42
 version=1
-last_client=eeschema
+last_client=kicad
 [pcbnew]
 version=1
 LastNetListRead=
@@ -20,9 +20,6 @@ SolderMaskMinWidth=0.000000000000
 DrawSegmentWidth=0.200000000000
 BoardOutlineThickness=0.100000000000
 ModuleOutlineThickness=0.150000000000
-[cvpcb]
-version=1
-NetIExt=net
 [general]
 version=1
 [eeschema]
@@ -64,3 +61,6 @@ LibName32=sn65hvd3082edgk
 LibName33=symbols
 LibName34=TLE4946-2K
 LibName35=pad
+[cvpcb]
+version=1
+NetIExt=net
