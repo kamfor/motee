@@ -1,0 +1,395 @@
+Cmp-Mod V01 Created by PcbNew   date = 2016-04-30 19:15:57
+
+BeginCmp
+TimeStamp = 5717A32A
+Path = /56E9859A
+Reference = IC1;
+ValeurCmp = ATTINY841-MU;
+IdModule  = kicad-libraries-master:QFN20-3X3;
+EndCmp
+
+BeginCmp
+TimeStamp = 56FC0706
+Path = /56FC27DC
+Reference = U26;
+ValeurCmp = pad;
+IdModule  = pad_round:pad_zlacze;
+EndCmp
+
+BeginCmp
+TimeStamp = 56ED96ED
+Path = /56E9E20E
+Reference = J1;
+ValeurCmp = SN65HVD3082EDGK;
+IdModule  = SN65HVD3082EDGK:VSSOP8_P0.65mm_W3mm;
+EndCmp
+
+BeginCmp
+TimeStamp = 56ED973A
+Path = /56E9A5B2
+Reference = R2;
+ValeurCmp = 40.2K;
+IdModule  = Resistors_SMD:R_0402;
+EndCmp
+
+BeginCmp
+TimeStamp = 56ED9685
+Path = /56E9D608
+Reference = 0.1uF2;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = 56ED976A
+Path = /56EA4D46
+Reference = R6;
+ValeurCmp = 10K;
+IdModule  = Resistors_SMD:R_0402;
+EndCmp
+
+BeginCmp
+TimeStamp = 56ED9679
+Path = /56E9A2E3
+Reference = 0.1uF1;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = 56ED972E
+Path = /56E9A231
+Reference = R1;
+ValeurCmp = 127K;
+IdModule  = Resistors_SMD:R_0402;
+EndCmp
+
+BeginCmp
+TimeStamp = 56ED9746
+Path = /56EA4030
+Reference = R3;
+ValeurCmp = 10K;
+IdModule  = Resistors_SMD:R_0402;
+EndCmp
+
+BeginCmp
+TimeStamp = 56ED9752
+Path = /56EA332A
+Reference = R4;
+ValeurCmp = 10K;
+IdModule  = Resistors_SMD:R_0402;
+EndCmp
+
+BeginCmp
+TimeStamp = 56ED975E
+Path = /56E9C558
+Reference = R5;
+ValeurCmp = 2.4K;
+IdModule  = Resistors_SMD:R_0402;
+EndCmp
+
+BeginCmp
+TimeStamp = 56EDB016
+Path = /56EE0F47
+Reference = D1;
+ValeurCmp = LED;
+IdModule  = Resistors_SMD:R_0402;
+EndCmp
+
+BeginCmp
+TimeStamp = 56EDB022
+Path = /56EE0EF1
+Reference = R7;
+ValeurCmp = 220R;
+IdModule  = Resistors_SMD:R_0402;
+EndCmp
+
+BeginCmp
+TimeStamp = 56EDDA50
+Path = /56EE284A
+Reference = 0.1uF3;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = 56EF1853
+Path = /56EF3BBC
+Reference = U3;
+ValeurCmp = pad_round;
+IdModule  = pad_round:pad_round;
+EndCmp
+
+BeginCmp
+TimeStamp = 56EF1858
+Path = /56EF3C44
+Reference = U4;
+ValeurCmp = pad_round;
+IdModule  = pad_round:pad_round;
+EndCmp
+
+BeginCmp
+TimeStamp = 56EF1DF6
+Path = /56EFC0B5
+Reference = U11;
+ValeurCmp = pad;
+IdModule  = pad_round:pad_square;
+EndCmp
+
+BeginCmp
+TimeStamp = 56EF1DFB
+Path = /56EFC12C
+Reference = U12;
+ValeurCmp = pad;
+IdModule  = pad_round:pad_square;
+EndCmp
+
+BeginCmp
+TimeStamp = 56EF1E00
+Path = /56EFC472
+Reference = U13;
+ValeurCmp = pad;
+IdModule  = pad_round:pad_square;
+EndCmp
+
+BeginCmp
+TimeStamp = 56EF1E05
+Path = /56EFC4E9
+Reference = U14;
+ValeurCmp = pad;
+IdModule  = pad_round:pad_square;
+EndCmp
+
+BeginCmp
+TimeStamp = 56EF1E0A
+Path = /56EFC567
+Reference = U15;
+ValeurCmp = pad;
+IdModule  = pad_round:pad_square;
+EndCmp
+
+BeginCmp
+TimeStamp = 56EF1E0F
+Path = /56EFC5E8
+Reference = U16;
+ValeurCmp = pad;
+IdModule  = pad_round:pad_square;
+EndCmp
+
+BeginCmp
+TimeStamp = 56F5AA65
+Path = /56E9DA58
+Reference = R12;
+ValeurCmp = 1K;
+IdModule  = Resistors_SMD:R_0402;
+EndCmp
+
+BeginCmp
+TimeStamp = 56F6964F
+Path = /56F6A110
+Reference = U17;
+ValeurCmp = MISO;
+IdModule  = pad_round:pad_isp;
+EndCmp
+
+BeginCmp
+TimeStamp = 56F69654
+Path = /56F6A710
+Reference = U18;
+ValeurCmp = SCK;
+IdModule  = pad_round:pad_isp;
+EndCmp
+
+BeginCmp
+TimeStamp = 56F69659
+Path = /56F6A794
+Reference = U19;
+ValeurCmp = RESET;
+IdModule  = pad_round:pad_isp;
+EndCmp
+
+BeginCmp
+TimeStamp = 56F6965E
+Path = /56F6A81F
+Reference = U20;
+ValeurCmp = pad;
+IdModule  = pad_round:pad_isp;
+EndCmp
+
+BeginCmp
+TimeStamp = 56F69663
+Path = /56F6AC43
+Reference = U21;
+ValeurCmp = MOSI;
+IdModule  = pad_round:pad_isp;
+EndCmp
+
+BeginCmp
+TimeStamp = 56F69668
+Path = /56F6ACD0
+Reference = U22;
+ValeurCmp = pad;
+IdModule  = pad_round:pad_isp;
+EndCmp
+
+BeginCmp
+TimeStamp = 56ED970F
+Path = /56E99D4C
+Reference = J2;
+ValeurCmp = drv8850;
+IdModule  = drv8850:DRV8850_RGY_24;
+EndCmp
+
+BeginCmp
+TimeStamp = 56FC06F7
+Path = /56FC2159
+Reference = U23;
+ValeurCmp = pad;
+IdModule  = pad_round:pad_zlacze;
+EndCmp
+
+BeginCmp
+TimeStamp = 56FC06FC
+Path = /56FC26C3
+Reference = U24;
+ValeurCmp = pad;
+IdModule  = pad_round:pad_zlacze;
+EndCmp
+
+BeginCmp
+TimeStamp = 56FC0701
+Path = /56FC274E
+Reference = U25;
+ValeurCmp = pad;
+IdModule  = pad_round:pad_zlacze;
+EndCmp
+
+BeginCmp
+TimeStamp = 56FF0D7D
+Path = /56EF1FA0
+Reference = U5;
+ValeurCmp = pad;
+IdModule  = pad_round:square_22x22;
+EndCmp
+
+BeginCmp
+TimeStamp = 56FF0D81
+Path = /56EF196A
+Reference = U6;
+ValeurCmp = pad;
+IdModule  = pad_round:square_22x22;
+EndCmp
+
+BeginCmp
+TimeStamp = 56FF0D85
+Path = /56EF200C
+Reference = U7;
+ValeurCmp = pad;
+IdModule  = pad_round:square_22x22;
+EndCmp
+
+BeginCmp
+TimeStamp = 56FF0D89
+Path = /56EF2079
+Reference = U8;
+ValeurCmp = pad;
+IdModule  = pad_round:square_22x22;
+EndCmp
+
+BeginCmp
+TimeStamp = 56FF0D8D
+Path = /56EF5B7F
+Reference = U9;
+ValeurCmp = pad;
+IdModule  = pad_round:square_22x22;
+EndCmp
+
+BeginCmp
+TimeStamp = 56FF0D91
+Path = /56EF5BEA
+Reference = U10;
+ValeurCmp = pad;
+IdModule  = pad_round:square_22x22;
+EndCmp
+
+BeginCmp
+TimeStamp = 56FF0DC1
+Path = /56E9ACCE
+Reference = 100u1;
+ValeurCmp = CP1;
+IdModule  = Capacitors_Tantalum_SMD:TantalC_SizeB_EIA-3528_Reflow;
+EndCmp
+
+BeginCmp
+TimeStamp = 56FF0DCC
+Path = /56E9AEDB
+Reference = 100uF1;
+ValeurCmp = CP1;
+IdModule  = Capacitors_Tantalum_SMD:TantalC_SizeB_EIA-3528_Reflow;
+EndCmp
+
+BeginCmp
+TimeStamp = 56FF0EDE
+Path = /56FC4D13
+Reference = U27;
+ValeurCmp = pad;
+IdModule  = pad_round:square_22x22;
+EndCmp
+
+BeginCmp
+TimeStamp = 56FF0EE3
+Path = /56FC4DB7
+Reference = U28;
+ValeurCmp = pad;
+IdModule  = pad_round:square_22x22;
+EndCmp
+
+BeginCmp
+TimeStamp = 56FF0EE8
+Path = /56FC4E56
+Reference = U29;
+ValeurCmp = pad;
+IdModule  = pad_round:square_22x22;
+EndCmp
+
+BeginCmp
+TimeStamp = 56FF0EED
+Path = /56FC4EF6
+Reference = U30;
+ValeurCmp = pad;
+IdModule  = pad_round:square_22x22;
+EndCmp
+
+BeginCmp
+TimeStamp = 56FF0EF2
+Path = /56FC5043
+Reference = U32;
+ValeurCmp = pad;
+IdModule  = pad_round:square_22x22;
+EndCmp
+
+BeginCmp
+TimeStamp = 56FF0F90
+Path = /56FC4F9D
+Reference = U31;
+ValeurCmp = pad;
+IdModule  = pad_round:square_22x22;
+EndCmp
+
+BeginCmp
+TimeStamp = 5724E918
+Path = /56EDAC90
+Reference = U1;
+ValeurCmp = TLE4946-2K;
+IdModule  = kicad-libraries-master:SC59;
+EndCmp
+
+BeginCmp
+TimeStamp = 5724E924
+Path = /56EDAD7D
+Reference = U2;
+ValeurCmp = TLE4946-2K;
+IdModule  = kicad-libraries-master:SC59;
+EndCmp
+
+EndListe
