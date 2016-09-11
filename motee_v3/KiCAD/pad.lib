@@ -1,0 +1,30 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#
+# pad
+#
+DEF pad U 0 40 Y Y 1 F N
+F0 "U" -150 100 60 H V C CNN
+F1 "pad" -150 -100 60 H V C CNN
+F2 "" 0 250 60 H V C CNN
+F3 "" 0 250 60 H V C CNN
+DRAW
+S -50 50 -200 -50 0 1 0 N
+X ~ 1 0 0 200 L 50 50 1 1 B
+ENDDRAW
+ENDDEF
+#
+# pad_round
+#
+DEF pad_round U 0 40 Y Y 1 F N
+F0 "U" -50 300 60 H V C CNN
+F1 "pad_round" 0 50 60 H V C CNN
+F2 "" 0 50 60 H V C CNN
+F3 "" 0 50 60 H V C CNN
+DRAW
+C -200 150 50 0 1 0 N
+X I/O 1 -50 150 200 L 50 50 1 1 B
+ENDDRAW
+ENDDEF
+#
+#End Library
