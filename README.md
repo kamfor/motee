@@ -1,10 +1,10 @@
-# motee_v2
+# motee_v3
 Highly integrated actuator for robotics
 
 ### Components
 * Pololu micro DC HP motor
 * Magnetic encoder
-* ATtiny841 MCU
+* STM32  MCU
 * TI high current H bridge
 * RS485 controller 
 * Logic Level converter 
