@@ -55,6 +55,7 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
+#include "usbd_cdc_if.h"
 
 /* USER CODE END Includes */
 
@@ -62,6 +63,9 @@
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
+uint8_t DataToSend[40]; // Tablica zawierajaca dane do wyslania
+uint8_t MessageLength = 0; // Zawiera dlugosc wysylanej wiadomosci
+volatile uint16_t pulse_count; // Licznik impulsow
 
 /* USER CODE END PV */
 
@@ -109,6 +113,11 @@ int main(void)
   MX_TIM1_Init();
 
   /* USER CODE BEGIN 2 */
+   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+  HAL_GPIO_WritePin(MOTOR_DIR_GPIO_Port, MOTOR_DIR_Pin, GPIO_PIN_SET);
+  TIM1->CCR1 = 100;
+
+  HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
 
   /* USER CODE END 2 */
 
@@ -118,10 +127,14 @@ int main(void)
   {
   /* USER CODE END WHILE */
 
-	  HAL_GPIO_TogglePin(USER_LED_GPIO_Port, USER_LED_Pin);
-	  HAL_Delay(200);
-
   /* USER CODE BEGIN 3 */
+
+	  pulse_count = TIM4->CNT;
+	  MessageLength = sprintf(DataToSend, "%d\n\r", pulse_count);
+	  CDC_Transmit_FS(DataToSend, MessageLength);
+	  HAL_GPIO_TogglePin(USER_LED_GPIO_Port, USER_LED_Pin);
+	  HAL_Delay(100);
+
 
   }
   /* USER CODE END 3 */

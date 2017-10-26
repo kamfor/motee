@@ -1,7 +1,7 @@
 [PreviousGenFiles]
-HeaderPath=/home/kamil/moote_v3/code/motee_v3/Inc
+HeaderPath=/home/kamil/motee/moote_v3.1/code/motee_v3/Inc
 HeaderFiles=gpio.h;adc.h;tim.h;usart.h;usb_device.h;usbd_conf.h;usbd_desc.h;usbd_cdc_if.h;stm32f1xx_it.h;stm32f1xx_hal_conf.h;main.h;
-SourcePath=/home/kamil/moote_v3/code/motee_v3/Src
+SourcePath=/home/kamil/motee/moote_v3.1/code/motee_v3/Src
 SourceFiles=gpio.h;adc.h;tim.h;usart.h;usb_device.h;usbd_conf.h;usbd_desc.h;usbd_cdc_if.h;stm32f1xx_it.h;stm32f1xx_hal_conf.h;main.h;gpio.c;adc.c;tim.c;usart.c;usb_device.c;usbd_conf.c;usbd_desc.c;usbd_cdc_if.c;stm32f1xx_it.c;stm32f1xx_hal_msp.c;main.c;
 
 [PreviousLibFiles]

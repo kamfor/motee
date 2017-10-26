@@ -56,8 +56,8 @@
 
 /* Private define ------------------------------------------------------------*/
 
-#define MOTOR_MODE2_Pin GPIO_PIN_3
-#define MOTOR_MODE2_GPIO_Port GPIOA
+#define MOTOR_DIR_Pin GPIO_PIN_3
+#define MOTOR_DIR_GPIO_Port GPIOA
 #define MOTOR_MODE1_Pin GPIO_PIN_4
 #define MOTOR_MODE1_GPIO_Port GPIOA
 #define RS485_DIR_Pin GPIO_PIN_5
