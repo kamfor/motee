@@ -48,11 +48,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f1xx_hal.h"
-#include "adc.h"
-#include "tim.h"
 #include "usart.h"
 #include "usb_device.h"
-#include "gpio.h"
+#include "motor.h"
 
 /* USER CODE BEGIN Includes */
 #include "usbd_cdc_if.h"
@@ -65,7 +63,7 @@
 /* Private variables ---------------------------------------------------------*/
 uint8_t DataToSend[40]; // Tablica zawierajaca dane do wyslania
 uint8_t MessageLength = 0; // Zawiera dlugosc wysylanej wiadomosci
-volatile uint16_t pulse_count; // Licznik impulsow
+uint16_t pulse_count = 0; // Licznik impulsow
 
 /* USER CODE END PV */
 
@@ -105,37 +103,39 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_GPIO_Init();
   MX_USB_DEVICE_Init();
-  MX_TIM4_Init();
   MX_USART1_UART_Init();
-  MX_ADC1_Init();
-  MX_TIM1_Init();
 
   /* USER CODE BEGIN 2 */
-   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-  HAL_GPIO_WritePin(MOTOR_DIR_GPIO_Port, MOTOR_DIR_Pin, GPIO_PIN_SET);
-  TIM1->CCR1 = 100;
+  MOTOR_Init();
+  int i=0;
 
-  HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
+  MOTOR_SetSpeed(200);
+
   while (1)
   {
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
 
-	  pulse_count = TIM4->CNT;
-	  MessageLength = sprintf(DataToSend, "%d\n\r", pulse_count);
-	  CDC_Transmit_FS(DataToSend, MessageLength);
-	  HAL_GPIO_TogglePin(USER_LED_GPIO_Port, USER_LED_Pin);
-	  HAL_Delay(100);
-
-
+	  //pulse_count = TIM4->CNT;
+	  for(i=0; i<251; i++){
+		  if(i==50)MOTOR_SetSpeed(200);
+		  if(i==100)MOTOR_SetSpeed(400);
+		  if(i==150)MOTOR_SetSpeed(600);
+		  if(i==200)MOTOR_SetSpeed(800);
+		  if(i==250)MOTOR_SetSpeed(900);
+		  MessageLength = sprintf(DataToSend, "%d\n\r", MOTOR_GetCurrent());
+		  CDC_Transmit_FS(DataToSend, MessageLength);
+		  HAL_GPIO_TogglePin(USER_LED_GPIO_Port, USER_LED_Pin);
+		  HAL_Delay(100);
+	  }
   }
   /* USER CODE END 3 */
 

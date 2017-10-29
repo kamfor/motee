@@ -23,6 +23,7 @@
 "Src/adc.o"
 "Src/gpio.o"
 "Src/main.o"
+"Src/motor.o"
 "Src/stm32f1xx_hal_msp.o"
 "Src/stm32f1xx_it.o"
 "Src/system_stm32f1xx.o"
