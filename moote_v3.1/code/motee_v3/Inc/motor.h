@@ -2,7 +2,7 @@
   ******************************************************************************
   * File Name          : motor.h
   * Description        : This file provides code for controlling dc motor drver.
-  ******************************************************************************
+  *****************************************************************************/
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __motor_H
 #define __motor_H
@@ -26,6 +26,7 @@ void MOTOR_Disable(void);
 void MOTOR_SetDirForward(void);
 void MOTOR_SetDirReverse(void);
 uint16_t MOTOR_GetCurrent(void);
+uint16_t MOTOR_GetEncoderValue(void);
 
 
 /* USER CODE BEGIN Prototypes */

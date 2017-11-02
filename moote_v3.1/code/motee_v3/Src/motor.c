@@ -2,11 +2,10 @@
   ******************************************************************************
   * File Name          : motor.c
   * Description        : This file provides code for the controlling DC motor..
-  ******************************************************************************
+  *****************************************************************************/
 
 /* Includes ------------------------------------------------------------------*/
 #include "motor.h"
-
 
 
 void MOTOR_Init(void){
@@ -38,6 +37,10 @@ void MOTOR_SetDirReverse(){
 
 void MOTOR_SetSpeed(uint16_t speed){
 	TIM1->CCR1 = speed;
+}
+
+uint16_t MOTOR_GetEncoderValue(){
+	return TIM4->CNT;
 }
 
 uint16_t MOTOR_GetCurrent(){

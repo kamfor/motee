@@ -48,9 +48,11 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f1xx_hal.h"
+#include "adc.h"
+#include "tim.h"
 #include "usart.h"
 #include "usb_device.h"
-#include "motor.h"
+#include "gpio.h"
 
 /* USER CODE BEGIN Includes */
 #include "usbd_cdc_if.h"
@@ -124,18 +126,12 @@ int main(void)
 
   /* USER CODE BEGIN 3 */
 
-	  //pulse_count = TIM4->CNT;
-	  for(i=0; i<251; i++){
-		  if(i==50)MOTOR_SetSpeed(200);
-		  if(i==100)MOTOR_SetSpeed(400);
-		  if(i==150)MOTOR_SetSpeed(600);
-		  if(i==200)MOTOR_SetSpeed(800);
-		  if(i==250)MOTOR_SetSpeed(900);
-		  MessageLength = sprintf(DataToSend, "%d\n\r", MOTOR_GetCurrent());
-		  CDC_Transmit_FS(DataToSend, MessageLength);
-		  HAL_GPIO_TogglePin(USER_LED_GPIO_Port, USER_LED_Pin);
-		  HAL_Delay(100);
-	  }
+
+	  MessageLength = sprintf(DataToSend, "%d\n\r", MOTOR_GetEncoderValue());
+	  CDC_Transmit_FS(DataToSend, MessageLength);
+	  HAL_GPIO_TogglePin(USER_LED_GPIO_Port, USER_LED_Pin);
+	  MOTOR_SetSpeed(200);
+	  HAL_Delay(50);
   }
   /* USER CODE END 3 */
 

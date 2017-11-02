@@ -29,13 +29,12 @@ Src/main.o: ../Src/main.c \
  /home/kamil/motee/moote_v3.1/code/motee_v3/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd.h \
  /home/kamil/motee/moote_v3.1/code/motee_v3/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usb.h \
  /home/kamil/motee/moote_v3.1/code/motee_v3/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd_ex.h \
+ /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/adc.h \
+ /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/tim.h \
  /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/usart.h \
  /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/usb_device.h \
  /home/kamil/motee/moote_v3.1/code/motee_v3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
  /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/usbd_conf.h \
- /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/motor.h \
- /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/adc.h \
- /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/tim.h \
  /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/gpio.h \
  /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/usbd_cdc_if.h \
  /home/kamil/motee/moote_v3.1/code/motee_v3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h \
@@ -105,6 +104,10 @@ Src/main.o: ../Src/main.c \
 
 /home/kamil/motee/moote_v3.1/code/motee_v3/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd_ex.h:
 
+/home/kamil/motee/moote_v3.1/code/motee_v3/Inc/adc.h:
+
+/home/kamil/motee/moote_v3.1/code/motee_v3/Inc/tim.h:
+
 /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/usart.h:
 
 /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/usb_device.h:
@@ -112,12 +115,6 @@ Src/main.o: ../Src/main.c \
 /home/kamil/motee/moote_v3.1/code/motee_v3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
 
 /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/usbd_conf.h:
-
-/home/kamil/motee/moote_v3.1/code/motee_v3/Inc/motor.h:
-
-/home/kamil/motee/moote_v3.1/code/motee_v3/Inc/adc.h:
-
-/home/kamil/motee/moote_v3.1/code/motee_v3/Inc/tim.h:
 
 /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/gpio.h:
 
