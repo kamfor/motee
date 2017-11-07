@@ -67,6 +67,9 @@ uint8_t DataToSend[40]; // Tablica zawierajaca dane do wyslania
 uint8_t MessageLength = 0; // Zawiera dlugosc wysylanej wiadomosci
 uint16_t pulse_count = 0; // Licznik impulsow
 
+extern volatile float encoder_ticks;
+extern volatile float motor_pid_control;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -118,7 +121,9 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-  MOTOR_SetSpeed(200);
+  //MOTOR_SetSpeed(200);
+
+  encoder_ticks = 10.0;
 
   while (1)
   {
@@ -127,10 +132,10 @@ int main(void)
   /* USER CODE BEGIN 3 */
 
 
-	  MessageLength = sprintf(DataToSend, "%d\n\r", MOTOR_GetEncoderValue());
+	  MessageLength = sprintf(DataToSend, "Control:%d\n\r", (int)motor_pid_control);
 	  CDC_Transmit_FS(DataToSend, MessageLength);
 	  HAL_GPIO_TogglePin(USER_LED_GPIO_Port, USER_LED_Pin);
-	  MOTOR_SetSpeed(200);
+	  //MOTOR_SetSpeed(40);
 	  HAL_Delay(50);
   }
   /* USER CODE END 3 */

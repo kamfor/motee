@@ -20,7 +20,7 @@
 
 
 void MOTOR_Init(void);
-void MOTOR_SetSpeed(uint16_t speed);
+void MOTOR_SetSpeed(float speed);
 void MOTOR_Enable(void);
 void MOTOR_Disable(void);
 void MOTOR_SetDirForward(void);
