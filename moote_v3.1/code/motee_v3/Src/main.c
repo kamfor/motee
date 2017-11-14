@@ -69,6 +69,7 @@ uint16_t pulse_count = 0; // Licznik impulsow
 
 extern volatile float encoder_ticks;
 extern volatile float motor_pid_control;
+extern UART_HandleTypeDef huart1;
 
 /* USER CODE END PV */
 
@@ -124,6 +125,8 @@ int main(void)
   //MOTOR_SetSpeed(200);
 
   encoder_ticks = 10.0;
+  HAL_GPIO_WritePin(RS485_DIR_GPIO_Port, RS485_DIR_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET); // taki test
 
   while (1)
   {
@@ -132,11 +135,15 @@ int main(void)
   /* USER CODE BEGIN 3 */
 
 
-	  MessageLength = sprintf(DataToSend, "Control:%d\n\r", (int)motor_pid_control);
-	  CDC_Transmit_FS(DataToSend, MessageLength);
+	  //MessageLength = sprintf(DataToSend, "Control:%d\n\r", (int)motor_pid_control);
+	  //CDC_Transmit_FS(DataToSend, MessageLength);
+	  //HAL_UART_Transmit(&huart1, "ojojojojj\r\n", 20,100);
+
+
 	  HAL_GPIO_TogglePin(USER_LED_GPIO_Port, USER_LED_Pin);
+
 	  //MOTOR_SetSpeed(40);
-	  HAL_Delay(50);
+	  HAL_Delay(200);
   }
   /* USER CODE END 3 */
 
