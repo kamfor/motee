@@ -40,7 +40,7 @@ private slots:
     void openSettings();
     void clearConsole();
     void about();
-    void writeData(const QByteArray &data);
+    void writeData(const QByteArray &data); //write data to specified address
     void readData();
     void handleError(QSerialPort::SerialPortError error);
     void saveFile();
@@ -50,6 +50,7 @@ private slots:
     void extendPlotScale();
     void dropPlotScale();
     void setPlotColor();
+    //void findDevices(); // send motee devreq (every motee will send addr while receive ack command from master)
 
 private:
 
@@ -58,13 +59,14 @@ private:
     void createLayouts();
     void connectActions();
     void showStatusMessage(const QString &message);
+    void dataInterpreter(QList<QByteArray> data);
 
     Ui::MainWindow *ui;
     QLabel *status;
     Console *console;
     SettingsDialog *settings;
     QSerialPort *serial;
-    QPushButton *buttons[5];
+    QPushButton *buttons[10];
     QGroupBox *buttonBox;
     QGroupBox *controlBox;
     QVector<QByteArray> *filedata;
@@ -73,6 +75,8 @@ private:
     QAction *ctrlminus;
     QAction *ctrls;
     QAction *ctrlp;
+    QListWidget *devicesList;
+
     bool autoscale;
 };
 

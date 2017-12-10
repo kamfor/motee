@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>334</width>
-    <height>254</height>
+    <width>372</width>
+    <height>299</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -47,6 +47,9 @@
         </property>
        </widget>
       </item>
+      <item row="3" column="1">
+       <widget class="QComboBox" name="stopBitsBox"/>
+      </item>
       <item row="2" column="1">
        <widget class="QComboBox" name="parityBox"/>
       </item>
@@ -57,8 +60,8 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="1">
-       <widget class="QComboBox" name="stopBitsBox"/>
+      <item row="4" column="1">
+       <widget class="QComboBox" name="flowControlBox"/>
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="flowControlLabel">
@@ -66,19 +69,6 @@
          <string>Flow control:</string>
         </property>
        </widget>
-      </item>
-      <item row="4" column="1">
-       <widget class="QComboBox" name="flowControlBox"/>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="spacerLabel">
-        <property name="text">
-         <string>Spacer:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="QComboBox" name="spacerBox"/>
       </item>
      </layout>
     </widget>

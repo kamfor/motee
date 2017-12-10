@@ -25,7 +25,7 @@
   *    derived from this software without specific written permission.
   * 4. This software, including modifications and/or derivative works of this 
   *    software, must execute solely and exclusively on microcontroller or
-  *    microprocessor devices manufactured by or for STMicroelectronics.
+  *    microprocessor devices manufactured by oSTM32F103T8U6r for STMicroelectronics.
   * 5. Redistribution and use of this software other than as permitted under 
   *    this license is void and will automatically terminate your rights under 
   *    this license. 
@@ -109,11 +109,11 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_USB_DEVICE_Init();
-  MX_USART1_UART_Init();
+  //MX_USB_DEVICE_Init();
+  //MX_USART1_UART_Init();
 
   /* USER CODE BEGIN 2 */
-  MOTOR_Init();
+  //MOTOR_Init();
   int i=0;
 
 
@@ -143,7 +143,7 @@ int main(void)
 	  HAL_GPIO_TogglePin(USER_LED_GPIO_Port, USER_LED_Pin);
 
 	  //MOTOR_SetSpeed(40);
-	  HAL_Delay(200);
+	  HAL_Delay(300);
   }
   /* USER CODE END 3 */
 

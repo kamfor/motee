@@ -31,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent) :
     filedata = new QVector<QByteArray>;
     customPlot = new QCustomPlot(this);
     status = new QLabel;
+    devicesList = new QListWidget;
 
     ui->statusBar->addWidget(status);
 
@@ -44,6 +45,7 @@ MainWindow::MainWindow(QWidget *parent) :
     buttons[2]->setEnabled(true);
     buttons[3]->setEnabled(true);
     buttons[4]->setEnabled(true);
+    buttons[5]->setEnabled(true);
     console->setEnabled(false);
     autoscale = true;
     changePlotCaption();
@@ -124,17 +126,24 @@ void MainWindow::writeData(const QByteArray &data){
     serial->write(data);
 }
 
-void MainWindow::readData(){ //to thread optimize
+void MainWindow::readData(){
 
     QByteArray data = serial->readAll();
     serial->flush();
     data = data.simplified();
+    console->putData(data);
+
     QList<QByteArray> list = data.split(';');
-    for(int i=0;i<list.count(); i++){
-        if(list.at(i).size()>0){
-            qDebug() <<list.at(i);
-            console->putData(list.at(i)); //move to thread
-            realtimeDataSlot(list.at(i).toDouble());
+    dataInterpreter(list);
+}
+
+void MainWindow::dataInterpreter(QList<QByteArray> data){
+    // to incomming data interpreter
+    qDebug() << data;
+    for(int i=0; i<data.length(); i++){
+        if(data.at(i).size()>0){
+
+            realtimeDataSlot(data.at(i).toDouble());
         }
     }
 }
@@ -184,8 +193,12 @@ void MainWindow::createLayouts(){
 
     controlBox = new QGroupBox;
     QHBoxLayout *centerLayout = new QHBoxLayout;
-    buttons[4] = new QPushButton("SET",this);
+    buttons[4] = new QPushButton("Find",this);
     centerLayout->addWidget(buttons[4]);
+    buttons[5] = new QPushButton("Set",this);
+    centerLayout->addWidget(buttons[5]);
+    devicesList->addItem("DEVICE1");
+    centerLayout->addWidget(devicesList);
     controlBox->setLayout(centerLayout);
 
     QGroupBox *left = new QGroupBox(tr("Console"));
