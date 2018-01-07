@@ -24,6 +24,15 @@ class Console;
 class SettingsDialog;
 class Plot;
 
+struct motee{
+    int address;
+    int groupAddress;
+    int maxSpeed;
+    int kp;
+    int kd;
+    int ki;
+};
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -56,8 +65,10 @@ private slots:
     void kpChanged(int);
     void kdChanged(int);
     void kiChanged(int);
+    void addressChanged();
     void sendFrame();
     void resetParameters();
+    void changeCurrentDevice(int);
 
 
 private:
@@ -69,6 +80,7 @@ private:
     void showStatusMessage(const QString &message);
     void dataInterpreter(QByteArray data);
     void fillAddress();
+    int from8to16(uint8_t, uint8_t);
 
     Ui::MainWindow *ui;
     QLabel *status;
@@ -84,7 +96,7 @@ private:
     QAction *ctrlminus;
     QAction *ctrls;
     QAction *ctrlp;
-    QListWidget *devicesList;
+    QComboBox *devicesList;
     QLabel *speedLabel;
     QLabel *maxSpeedLabel;
     QLabel *kpLabel;
@@ -94,9 +106,17 @@ private:
     //driveParameters: speed -1000:1000 Kp, Ki, Kd, MaxSpeed
     QComboBox *address;
     QComboBox *groupAddress;
+    QVector<motee> *devicesParams;
+    uint8_t currentMotee;
+    motee defaultMotee;
 
 
     bool autoscale;
+    bool newAddres;
+    bool newMaxSpeed;
+    bool newKp;
+    bool newKd;
+    bool newKi;
 };
 
 #endif // MAINWINDOW_H

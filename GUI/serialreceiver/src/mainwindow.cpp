@@ -31,9 +31,22 @@ MainWindow::MainWindow(QWidget *parent) :
     filedata = new QVector<QByteArray>;
     customPlot = new QCustomPlot(this);
     status = new QLabel;
-    devicesList = new QListWidget;
+    devicesList = new QComboBox();
     address = new QComboBox;
     groupAddress = new QComboBox;
+    devicesParams = new QVector<motee>;
+    devicesParams->resize(256);
+
+    defaultMotee.address = 0;
+    defaultMotee.groupAddress = 0;
+    defaultMotee.maxSpeed = 1000;
+    defaultMotee.kp = 50;
+    defaultMotee.kd = 0;
+    defaultMotee.ki = 100;
+
+    for(int i=0; i<256; i++){
+        devicesParams->push_back(defaultMotee);
+    }
 
     speedLabel = new QLabel("Speed:", this);
     maxSpeedLabel = new QLabel("MaxSpeed:", this);
@@ -64,6 +77,12 @@ MainWindow::MainWindow(QWidget *parent) :
     console->setEnabled(false);
     autoscale = true;
     changePlotCaption();
+
+    newAddres = false;
+    newMaxSpeed = false;
+    newKp = false;
+    newKd = false;
+    newKi = false;
 
     connect(serial, static_cast<void (QSerialPort::*)(QSerialPort::SerialPortError)>(&QSerialPort::error),this, &MainWindow::handleError);
     connect(serial, &QSerialPort::readyRead, this, &MainWindow::readData);
@@ -158,25 +177,39 @@ void MainWindow::readData(){
 }
 
 void MainWindow::dataInterpreter(QByteArray data){
-    // to incomming data interpreter
 
-
-    uint8_t speedH = data.at(2);
-    uint8_t speedL = data.at(3);
-
-    uint8_t currentH = data.at(5);
-    uint8_t currentL = data.at(6);
-    int speed  = speedL*256 + speedH;
-    int current  = currentL*256 + currentH;
-
-
-     qDebug() << speed;
-
-
-    realtimeDataSlot(speed,current);
-
+    int functionId = data.at(0);
+    int speed;
+    int current;
+    int direction;
+    int incommingAddr;
+    int groupAddr;
+    switch (functionId){
+    case 0:
+        //if (data.at(1)==actualSelectedDrive); display only selected device
+        speed  = from8to16(data.at(2), data.at(3));
+        current  = from8to16(data.at(5), data.at(6));
+        direction = data.at(4);
+        realtimeDataSlot(speed,1000-current);
+        qDebug() << speed << current << direction;
+    break;
+    case 1:
+        incommingAddr = data.at(1);
+        groupAddr = data.at(2);
+        if(devicesParams->at(incommingAddr).address==0){
+            motee temp;
+            temp.address = incommingAddr;
+            temp.groupAddress = groupAddr;
+            temp.maxSpeed = defaultMotee.maxSpeed;
+            temp.kp = defaultMotee.kp;
+            temp.kd = defaultMotee.kd;
+            temp.ki = defaultMotee.ki;
+            this->devicesParams->replace(incommingAddr,temp);
+            this->devicesList->addItem(QString::number(incommingAddr)+"_"+QString::number(groupAddr),QVariant(incommingAddr));
+        }
+    break;
+    }
 }
-
 
 
 void MainWindow::handleError(QSerialPort::SerialPortError error){
@@ -209,6 +242,9 @@ void MainWindow::initActionsConnections(){
     connect(driveParameters[2], SIGNAL(valueChanged(int)), this, SLOT(kpChanged(int)));
     connect(driveParameters[3], SIGNAL(valueChanged(int)), this, SLOT(kdChanged(int)));
     connect(driveParameters[4], SIGNAL(valueChanged(int)), this, SLOT(kiChanged(int)));
+    connect(devicesList , SIGNAL(currentIndexChanged(int)),this, SLOT(changeCurrentDevice(int)));
+    connect(address , SIGNAL(currentIndexChanged(int)),this, SLOT(addressChanged()));
+    connect(groupAddress , SIGNAL(currentIndexChanged(int)),this, SLOT(addressChanged()));
 }
 
 void MainWindow::showStatusMessage(const QString &message){
@@ -273,8 +309,11 @@ void MainWindow::createLayouts(){
     buttons[4] = new QPushButton("Find",this);
     buttons[5] = new QPushButton("Set",this);
     buttons[6] = new QPushButton("Reset",this);
-    devicesList->addItem("Devices List");
-    centerLayout->addWidget(devicesList);
+    QGroupBox *devList = new QGroupBox("Devices List:",this);
+    QHBoxLayout *devListLayout = new QHBoxLayout;
+    devListLayout->addWidget(devicesList);
+    devList->setLayout(devListLayout);
+    centerLayout->addWidget(devList);
     centerLayout->addWidget(buttons[4]);
     centerLayout->addWidget(buttons[5]);
     centerLayout->addWidget(buttons[6]);
@@ -313,7 +352,7 @@ void MainWindow::createLayouts(){
 
     mainWidget->setLayout(mainLayout);
     setCentralWidget(mainWidget);
-    setWindowTitle(tr("SerialReceiver"));
+    setWindowTitle(tr("Motion Controller"));
 }
 
 void MainWindow::saveFile(){
@@ -459,23 +498,50 @@ void MainWindow::setPlotColor(){
 
 void MainWindow::speedChanged(int s){
     this->speedLabel->setText("Speed: " + QString::number(s));
+    QByteArray txBuffer;
+    uint16_t speed = (uint16_t)abs(s);
+    txBuffer.resize(8);
+    txBuffer[0] = 2;
+    txBuffer[1] = devicesParams->at(currentMotee).address; //selected device address
+    txBuffer[2] = devicesParams->at(currentMotee).groupAddress; //selected group address
+    txBuffer[3] = (uint8_t)(speed>>8);
+    txBuffer[4] = (uint8_t)speed;
+
+    if(s>=0){
+        txBuffer[5] = 0;
+    }
+    else txBuffer[5] = 1;
+    txBuffer[6] = 0;
+    txBuffer[7] = 0;
+    serial->write(txBuffer);
+    while(serial->waitForBytesWritten(5));
+    console->putData(txBuffer.toHex());
 }
 
 void MainWindow::maxSpeedChanged(int s){
     this->maxSpeedLabel->setText("maxSpeed: " + QString::number(s));
+    this->newMaxSpeed = true;
 }
 
 void MainWindow::kpChanged(int s){
     this->kpLabel->setText("Kp: " + QString::number(s));
+    this->newKp = true;
 }
 
 void MainWindow::kdChanged(int s){
     this->kdLabel->setText("Ki: " + QString::number(s));
+    this->newKd = true;
 }
 
 void MainWindow::kiChanged(int s){
     this->kiLabel->setText("Kd: " + QString::number(s));
+    this->newKi = true;
 }
+
+void MainWindow::addressChanged(){
+    this->newAddres = true;
+}
+
 
 void MainWindow::fillAddress(){
 
@@ -486,14 +552,66 @@ void MainWindow::fillAddress(){
 }
 
 void MainWindow::findDevices(){
-    this->fillAddress();
+    QByteArray txBuffer;
+    txBuffer.resize(8);
+    txBuffer[0] = 1;
+    txBuffer[1] = 0; // broadcast
+    serial->write(txBuffer);
+    while(serial->waitForBytesWritten(5));
+    console->putData(txBuffer.toHex());
 }
 
-void MainWindow::sendFrame(){
+void MainWindow::sendFrame(){ //disable if parameters didn't chanched
 
-    serial->write("01234567",8);
-    console->putData(QByteArray::fromStdString("01234567"));
+    QByteArray txBuffer;
+    txBuffer.resize(8);
+    uint16_t userValue=0;
 
+    txBuffer[1] = devicesParams->at(currentMotee).address; //selected device address
+    txBuffer[2] = devicesParams->at(currentMotee).groupAddress; //selected group address
+    txBuffer[5] = 0;
+    txBuffer[6] = 0;
+    txBuffer[7] = 0;
+
+    if(newAddres){
+
+        txBuffer[0] = 3;
+        txBuffer[3] = (uint8_t)address->currentIndex();
+        txBuffer[4] = (uint8_t)groupAddress->currentIndex();
+        this->newAddres=false;
+    }
+     else if(newMaxSpeed){
+        userValue = driveParameters[1]->value();
+        txBuffer[3] = (uint8_t)(userValue>>8);
+        txBuffer[4] = (uint8_t)userValue;
+        txBuffer[0] = 4;
+        this->newMaxSpeed=false;
+    }
+    else if(newKp){
+        userValue = driveParameters[2]->value();
+        txBuffer[3] = (uint8_t)(userValue>>8);
+        txBuffer[4] = (uint8_t)userValue;
+        txBuffer[0] = 5;
+         this->newKp=false;
+    }
+    else if(newKd){
+        userValue = driveParameters[3]->value();
+        txBuffer[3] = (uint8_t)(userValue>>8);
+        txBuffer[4] = (uint8_t)userValue;
+        txBuffer[0] = 6;
+        this->newKd=false;
+    }
+    else if(newKi){
+        userValue = driveParameters[4]->value();
+        txBuffer[3] = (uint8_t)(userValue>>8);
+        txBuffer[4] = (uint8_t)userValue;
+        txBuffer[0] = 7;
+        this->newKi=false;
+    }
+
+    serial->write(txBuffer);
+    while(serial->waitForBytesWritten(5));
+    console->putData(txBuffer.toHex());
 }
 
 void MainWindow::resetParameters(){
@@ -506,3 +624,19 @@ void MainWindow::resetParameters(){
     this->groupAddress->setCurrentIndex(0);
 }
 
+int MainWindow::from8to16(uint8_t H, uint8_t L){
+
+    return   H*256 + L;
+}
+
+void MainWindow::changeCurrentDevice(int variant){
+    currentMotee = devicesList->currentData().toInt();
+    qDebug() << devicesParams->at(currentMotee).address;
+    qDebug() << variant;
+    this->driveParameters[1]->setValue(devicesParams->at(currentMotee).maxSpeed);
+    this->driveParameters[2]->setValue(devicesParams->at(currentMotee).kp);
+    this->driveParameters[3]->setValue(devicesParams->at(currentMotee).kd);
+    this->driveParameters[4]->setValue(devicesParams->at(currentMotee).ki);
+    this->address->setCurrentIndex(devicesParams->at(currentMotee).address);
+    this->groupAddress->setCurrentIndex(devicesParams->at(currentMotee).groupAddress);
+}

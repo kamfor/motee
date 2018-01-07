@@ -59,7 +59,11 @@ uint8_t rxByte = 0;
 uint8_t txSize = 0;
 uint8_t rxSize = 0;
 volatile uint8_t frameReady = 0;
+static uint8_t myAddress = 10;
+static uint8_t myGroupAddress = 2;
 uint16_t speed=0;
+uint8_t direction = 0;
+uint8_t answerFlag=0;
 
 
 /* USER CODE END PV */
@@ -79,7 +83,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 	}
 	frameReady=1;
 	HAL_UART_Receive_DMA(&huart2, rxBuffer, 8);
-	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 }
 
 /* USER CODE END PFP */
@@ -133,10 +136,9 @@ int main(void)
   /* USER CODE BEGIN 3 */
 	if(frameReady){
 		handleCommunication();
-		frameReady=1;
+		frameReady=0;
 	}
 	  HAL_Delay(20);
-	  speed++;
   }
   /* USER CODE END 3 */
 
@@ -202,17 +204,40 @@ void SystemClock_Config(void)
 
 void handleCommunication(){
 
-	txBuffer[0] = 0;
-	txBuffer[1] = 5;
-	txBuffer[2] = (uint8_t)speed;
-	txBuffer[3] = (uint8_t)(speed>>8);
-	txBuffer[4] = 1;
-	txBuffer[5] = (uint8_t)(4096-speed);
-	txBuffer[6] = (uint8_t)((4096-speed)>>8);
-	txBuffer[7] = 0;
+	if(rxBuffer[1]==myAddress||rxBuffer[2]==myGroupAddress||rxBuffer[1]==0){
+		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 
-	HAL_UART_Transmit_DMA(&huart2, txBuffer, 8);
-
+		switch (rxBuffer[0]){
+		case 0: //start/stop answering
+			if(rxBuffer[2]==1)
+				answerFlag = 1;
+			else answerFlag = 0;
+		break;
+		case 1: //send identification flag
+			txBuffer[0] = 1;
+			txBuffer[1] = myAddress;
+			txBuffer[2] = myGroupAddress;
+			txBuffer[3] = 0;
+			txBuffer[4] = 0;
+			txBuffer[5] = 0;
+			txBuffer[6] = 0;
+			txBuffer[7] = 0;
+		break;
+		case 2: //set motor speed
+			speed = (uint16_t)rxBuffer[3] << 8 |rxBuffer[4];
+			direction = rxBuffer[5];
+			txBuffer[0] = 0;
+			txBuffer[1] = 5;
+			txBuffer[2] = (uint8_t)(speed>>8);
+			txBuffer[3] = (uint8_t)speed;
+			txBuffer[4] = direction;
+			txBuffer[5] = (uint8_t)((speed)>>8);
+			txBuffer[6] = (uint8_t)(speed);
+			txBuffer[7] = 0;
+		break;
+		}
+		HAL_UART_Transmit_DMA(&huart2, txBuffer, 8);
+	}
 }
 
 /* USER CODE END 4 */
