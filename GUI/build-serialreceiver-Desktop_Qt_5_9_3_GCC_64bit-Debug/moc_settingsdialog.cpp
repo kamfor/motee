@@ -88,6 +88,7 @@ void SettingsDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 1: _t->apply(); break;
         case 2: _t->checkCustomBaudRatePolicy((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 3: _t->checkCustomDevicePathPolicy((*reinterpret_cast< int(*)>(_a[1]))); break;
+        //case 4: _t->CustomSpacerPolicy(); break;
         default: ;
         }
     }

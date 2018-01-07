@@ -44,13 +44,21 @@ private slots:
     void readData();
     void handleError(QSerialPort::SerialPortError error);
     void saveFile();
-    void realtimeDataSlot(double);
+    void realtimeDataSlot(int, int);
     void changePlotCaption();
     void savePlot();
     void extendPlotScale();
     void dropPlotScale();
     void setPlotColor();
-    //void findDevices(); // send motee devreq (every motee will send addr while receive ack command from master)
+    void findDevices(); // send motee devreq (every motee will send addr while receive ack command from master)
+    void speedChanged(int);
+    void maxSpeedChanged(int);
+    void kpChanged(int);
+    void kdChanged(int);
+    void kiChanged(int);
+    void sendFrame();
+    void resetParameters();
+
 
 private:
 
@@ -59,7 +67,8 @@ private:
     void createLayouts();
     void connectActions();
     void showStatusMessage(const QString &message);
-    void dataInterpreter(QList<QByteArray> data);
+    void dataInterpreter(QByteArray data);
+    void fillAddress();
 
     Ui::MainWindow *ui;
     QLabel *status;
@@ -76,6 +85,16 @@ private:
     QAction *ctrls;
     QAction *ctrlp;
     QListWidget *devicesList;
+    QLabel *speedLabel;
+    QLabel *maxSpeedLabel;
+    QLabel *kpLabel;
+    QLabel *kdLabel;
+    QLabel *kiLabel;
+    QSlider *driveParameters[5];
+    //driveParameters: speed -1000:1000 Kp, Ki, Kd, MaxSpeed
+    QComboBox *address;
+    QComboBox *groupAddress;
+
 
     bool autoscale;
 };

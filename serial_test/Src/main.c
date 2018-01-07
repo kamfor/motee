@@ -44,23 +44,27 @@
 
 /* USER CODE BEGIN Includes */
 
+#define BUSADDR 0x30
+#define BUSBRDC 0xFF
+
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-uint8_t txBuffer[32];
-uint8_t rxBuffer[32];
+uint8_t txBuffer[8];
+uint8_t rxBuffer[8];
 uint8_t rxByte = 0;
 uint8_t txSize = 0;
 uint8_t rxSize = 0;
-uint8_t synchro = 0;
 volatile uint8_t frameReady = 0;
+uint16_t speed=0;
+
 
 /* USER CODE END PV */
 
-/* Private function prototypes -----------------------------------------------*/
+/* Private function prototypes --------------------------------------------*/
 void SystemClock_Config(void);
 
 /* USER CODE BEGIN PFP */
@@ -70,15 +74,12 @@ void handleCommunication();
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 
-	if(rxByte=='0')synchro=0;
-	if(synchro>=32){
-		synchro = 0;
-		frameReady=1;
+	if((rxBuffer[0]=='0'||rxBuffer[0]==BUSBRDC)){
+
 	}
-	rxBuffer[synchro] = rxByte;
-	synchro++;
+	frameReady=1;
+	HAL_UART_Receive_DMA(&huart2, rxBuffer, 8);
 	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-	HAL_UART_Receive_DMA(&huart2, &rxByte, 1);
 }
 
 /* USER CODE END PFP */
@@ -96,7 +97,7 @@ int main(void)
 
   /* USER CODE END 1 */
 
-  /* MCU Configuration----------------------------------------------------------*/
+  /* MCU Configuration---------------------------------------0-------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
@@ -119,7 +120,7 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
 
-  HAL_UART_Receive_DMA(&huart2, &rxByte, 1);
+  HAL_UART_Receive_DMA(&huart2, rxBuffer, 8);
 
   /* USER CODE END 2 */
 
@@ -132,10 +133,10 @@ int main(void)
   /* USER CODE BEGIN 3 */
 	if(frameReady){
 		handleCommunication();
-		frameReady=0;
+		frameReady=1;
 	}
-	  HAL_Delay(100);
-
+	  HAL_Delay(20);
+	  speed++;
   }
   /* USER CODE END 3 */
 
@@ -200,7 +201,17 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 
 void handleCommunication(){
-	HAL_UART_Transmit_DMA(&huart2, "Succesfully Racived Frame xxxx\n\r", 32);
+
+	txBuffer[0] = 0;
+	txBuffer[1] = 5;
+	txBuffer[2] = (uint8_t)speed;
+	txBuffer[3] = (uint8_t)(speed>>8);
+	txBuffer[4] = 1;
+	txBuffer[5] = (uint8_t)(4096-speed);
+	txBuffer[6] = (uint8_t)((4096-speed)>>8);
+	txBuffer[7] = 0;
+
+	HAL_UART_Transmit_DMA(&huart2, txBuffer, 8);
 
 }
 
@@ -218,7 +229,7 @@ void _Error_Handler(char * file, int line)
   while(1) 
   {
   }
-  /* USER CODE END Error_Handler_Debug */ 
+  /* USER CODE END Error_Handler_Debug */
 }
 
 #ifdef USE_FULL_ASSERT
