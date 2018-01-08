@@ -9,7 +9,7 @@
   * inserted by the user or by software development tools
   * are owned by their respective copyright owners.
   *
-  * COPYRIGHT(c) 2017 STMicroelectronics
+  * COPYRIGHT(c) 2018 STMicroelectronics
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -43,9 +43,9 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
+#include "communication.h"
 
-#define BUSADDR 0x30
-#define BUSBRDC 0xFF
+
 
 /* USER CODE END Includes */
 
@@ -53,37 +53,19 @@
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-uint8_t txBuffer[8];
-uint8_t rxBuffer[8];
-uint8_t rxByte = 0;
-uint8_t txSize = 0;
-uint8_t rxSize = 0;
-volatile uint8_t frameReady = 0;
-static uint8_t myAddress = 10;
-static uint8_t myGroupAddress = 2;
 uint16_t speed=0;
 uint8_t direction = 0;
-uint8_t answerFlag=0;
+extern volatile uint8_t frameReady;
+
 
 
 /* USER CODE END PV */
 
-/* Private function prototypes --------------------------------------------*/
+/* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
-
-void handleCommunication();
-
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
-
-	if((rxBuffer[0]=='0'||rxBuffer[0]==BUSBRDC)){
-
-	}
-	frameReady=1;
-	HAL_UART_Receive_DMA(&huart2, rxBuffer, 8);
-}
 
 /* USER CODE END PFP */
 
@@ -100,7 +82,7 @@ int main(void)
 
   /* USER CODE END 1 */
 
-  /* MCU Configuration---------------------------------------0-------------------*/
+  /* MCU Configuration----------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
@@ -118,12 +100,12 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_DMA_Init();
-  MX_USART2_UART_Init();
+  MX_USART6_UART_Init();
 
   /* USER CODE BEGIN 2 */
+  communicationInit();
 
-  HAL_UART_Receive_DMA(&huart2, rxBuffer, 8);
+
 
   /* USER CODE END 2 */
 
@@ -135,10 +117,12 @@ int main(void)
 
   /* USER CODE BEGIN 3 */
 	if(frameReady){
-		handleCommunication();
+		handleCommunication(&speed, &direction);
 		frameReady=0;
 	}
-	  HAL_Delay(20);
+	  HAL_Delay(200);
+	  //sendHello();
+	  HAL_UART_Transmit(&huart6,"Hello\r\n",7,10);
   }
   /* USER CODE END 3 */
 
@@ -202,44 +186,6 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
-void handleCommunication(){
-
-	if(rxBuffer[1]==myAddress||rxBuffer[2]==myGroupAddress||rxBuffer[1]==0){
-		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-
-		switch (rxBuffer[0]){
-		case 0: //start/stop answering
-			if(rxBuffer[2]==1)
-				answerFlag = 1;
-			else answerFlag = 0;
-		break;
-		case 1: //send identification flag
-			txBuffer[0] = 1;
-			txBuffer[1] = myAddress;
-			txBuffer[2] = myGroupAddress;
-			txBuffer[3] = 0;
-			txBuffer[4] = 0;
-			txBuffer[5] = 0;
-			txBuffer[6] = 0;
-			txBuffer[7] = 0;
-		break;
-		case 2: //set motor speed
-			speed = (uint16_t)rxBuffer[3] << 8 |rxBuffer[4];
-			direction = rxBuffer[5];
-			txBuffer[0] = 0;
-			txBuffer[1] = 5;
-			txBuffer[2] = (uint8_t)(speed>>8);
-			txBuffer[3] = (uint8_t)speed;
-			txBuffer[4] = direction;
-			txBuffer[5] = (uint8_t)((speed)>>8);
-			txBuffer[6] = (uint8_t)(speed);
-			txBuffer[7] = 0;
-		break;
-		}
-		HAL_UART_Transmit_DMA(&huart2, txBuffer, 8);
-	}
-}
-
 /* USER CODE END 4 */
 
 /**
@@ -254,7 +200,7 @@ void _Error_Handler(char * file, int line)
   while(1) 
   {
   }
-  /* USER CODE END Error_Handler_Debug */
+  /* USER CODE END Error_Handler_Debug */ 
 }
 
 #ifdef USE_FULL_ASSERT
