@@ -39,11 +39,13 @@
 #include "main.h"
 #include "stm32f4xx_hal.h"
 #include "dma.h"
+#include "spi.h"
 #include "usart.h"
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
 #include "communication.h"
+#include "oled.h"
 
 
 
@@ -56,6 +58,8 @@
 uint16_t speed=0;
 uint8_t direction = 0;
 extern volatile uint8_t frameReady;
+extern const uint8_t c_chVBLogo[6144];
+OLED_DISPLAY_DATA_St OledDisplayData;
 
 
 
@@ -100,13 +104,21 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
+  MX_USART2_UART_Init();
   MX_USART6_UART_Init();
+  MX_SPI1_Init();
 
   /* USER CODE BEGIN 2 */
   communicationInit();
+  oled_Init();
 
 
+  HAL_Delay(100);
 
+  batteryDisplayInit();
+
+  OledDisplayData.batteryLevel = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -120,9 +132,17 @@ int main(void)
 		handleCommunication(&speed, &direction);
 		frameReady=0;
 	}
-	  HAL_Delay(200);
-	  //sendHello();
-	  HAL_UART_Transmit(&huart6,"Hello\r\n",7,10);
+	//ssd1306_display_string(10, 10, "MOTEE", 16, 1);
+	//ssd1306_draw_bitmap(0, 16, c_chVBLogo, 128, 48);
+
+	//ssd1306_refresh_gram();
+	if(OledDisplayData.batteryLevel >5)OledDisplayData.batteryLevel =1;
+	displayBatteryLevel();
+
+	HAL_Delay(1000);
+
+	OledDisplayData.batteryLevel++;
+
   }
   /* USER CODE END 3 */
 
@@ -225,10 +245,10 @@ void assert_failed(uint8_t* file, uint32_t line)
 
 /**
   * @}
-  */ 
+*/
 
 /**
   * @}
 */ 
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+/********(C) COPYRIGHT STMicroelectronics *****END OF FILE****/
