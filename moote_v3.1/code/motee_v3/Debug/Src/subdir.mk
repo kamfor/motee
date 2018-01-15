@@ -5,6 +5,8 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../Src/adc.c \
+../Src/communication.c \
+../Src/dma.c \
 ../Src/gpio.c \
 ../Src/main.c \
 ../Src/motor.c \
@@ -21,6 +23,8 @@ C_SRCS += \
 
 OBJS += \
 ./Src/adc.o \
+./Src/communication.o \
+./Src/dma.o \
 ./Src/gpio.o \
 ./Src/main.o \
 ./Src/motor.o \
@@ -37,6 +41,8 @@ OBJS += \
 
 C_DEPS += \
 ./Src/adc.d \
+./Src/communication.d \
+./Src/dma.d \
 ./Src/gpio.d \
 ./Src/main.d \
 ./Src/motor.d \

@@ -9,7 +9,7 @@
   * inserted by the user or by software development tools
   * are owned by their respective copyright owners.
   *
-  * Copyright (c) 2017 STMicroelectronics International N.V. 
+  * Copyright (c) 2018 STMicroelectronics International N.V. 
   * All rights reserved.
   *
   * Redistribution and use in source and binary forms, with or without 
@@ -58,16 +58,18 @@
 
 #define MOTOR_CURRENT_Pin GPIO_PIN_1
 #define MOTOR_CURRENT_GPIO_Port GPIOA
+#define MOTOR_PHASE_Pin GPIO_PIN_2
+#define MOTOR_PHASE_GPIO_Port GPIOA
 #define MOTOR_DIR_Pin GPIO_PIN_3
 #define MOTOR_DIR_GPIO_Port GPIOA
 #define MOTOR_MODE1_Pin GPIO_PIN_4
 #define MOTOR_MODE1_GPIO_Port GPIOA
-#define RS485_DIR_Pin GPIO_PIN_5
-#define RS485_DIR_GPIO_Port GPIOA
 #define MOTOR_FAULT_Pin GPIO_PIN_6
 #define MOTOR_FAULT_GPIO_Port GPIOA
 #define MOTOR_SLEEP_Pin GPIO_PIN_7
 #define MOTOR_SLEEP_GPIO_Port GPIOA
+#define RS485_DIR_Pin GPIO_PIN_8
+#define RS485_DIR_GPIO_Port GPIOA
 #define USER_LED_Pin GPIO_PIN_4
 #define USER_LED_GPIO_Port GPIOB
 

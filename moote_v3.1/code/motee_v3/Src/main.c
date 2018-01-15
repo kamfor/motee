@@ -9,7 +9,7 @@
   * inserted by the user or by software development tools
   * are owned by their respective copyright owners.
   *
-  * Copyright (c) 2017 STMicroelectronics International N.V. 
+  * Copyright (c) 2018 STMicroelectronics International N.V. 
   * All rights reserved.
   *
   * Redistribution and use in source and binary forms, with or without 
@@ -25,7 +25,7 @@
   *    derived from this software without specific written permission.
   * 4. This software, including modifications and/or derivative works of this 
   *    software, must execute solely and exclusively on microcontroller or
-  *    microprocessor devices manufactured by oSTM32F103T8U6r for STMicroelectronics.
+  *    microprocessor devices manufactured by or for STMicroelectronics.
   * 5. Redistribution and use of this software other than as permitted under 
   *    this license is void and will automatically terminate your rights under 
   *    this license. 
@@ -49,6 +49,7 @@
 #include "main.h"
 #include "stm32f1xx_hal.h"
 #include "adc.h"
+#include "dma.h"
 #include "tim.h"
 #include "usart.h"
 #include "usb_device.h"
@@ -56,6 +57,8 @@
 
 /* USER CODE BEGIN Includes */
 #include "usbd_cdc_if.h"
+#include "motor.h"
+#include "communication.h"
 
 /* USER CODE END Includes */
 
@@ -67,8 +70,14 @@ uint8_t DataToSend[40]; // Tablica zawierajaca dane do wyslania
 uint8_t MessageLength = 0; // Zawiera dlugosc wysylanej wiadomosci
 uint16_t pulse_count = 0; // Licznik impulsow
 
+
+uint16_t speed=0;
+uint8_t direction = 0;
+extern volatile uint8_t frameReady;
 extern volatile float encoder_ticks;
 extern volatile float motor_pid_control;
+extern volatile uint8_t frameReady;
+extern uint8_t rxBuffer[8];
 extern UART_HandleTypeDef huart1;
 
 /* USER CODE END PV */
@@ -109,11 +118,12 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  //MX_USB_DEVICE_Init();
-  //MX_USART1_UART_Init();
+  MX_GPIO_Init();
+  MX_ADC1_Init();
 
   /* USER CODE BEGIN 2 */
-  //MOTOR_Init();
+  communication_init();
+  MOTOR_Init();
   int i=0;
 
 
@@ -125,8 +135,6 @@ int main(void)
   //MOTOR_SetSpeed(200);
 
   encoder_ticks = 10.0;
-  HAL_GPIO_WritePin(RS485_DIR_GPIO_Port, RS485_DIR_Pin, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET); // taki test
 
   while (1)
   {
@@ -137,13 +145,20 @@ int main(void)
 
 	  //MessageLength = sprintf(DataToSend, "Control:%d\n\r", (int)motor_pid_control);
 	  //CDC_Transmit_FS(DataToSend, MessageLength);
-	  //HAL_UART_Transmit(&huart1, "ojojojojj\r\n", 20,100);
+
+	  if(frameReady){
+	  		//handle_communication(&speed, &direction);
+		  HAL_GPIO_WritePin(RS485_DIR_GPIO_Port, RS485_DIR_Pin, GPIO_PIN_SET);
+		  	  HAL_UART_Transmit_DMA(&huart1, rxBuffer, 8);
+		  	HAL_GPIO_WritePin(RS485_DIR_GPIO_Port, RS485_DIR_Pin, GPIO_PIN_RESET);
+	  		frameReady=0;
+	  }
 
 
 	  HAL_GPIO_TogglePin(USER_LED_GPIO_Port, USER_LED_Pin);
 
 	  //MOTOR_SetSpeed(40);
-	  HAL_Delay(300);
+	  HAL_Delay(100);
   }
   /* USER CODE END 3 */
 

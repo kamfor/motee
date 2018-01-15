@@ -29,7 +29,8 @@ Src/usart.o: ../Src/usart.c \
  /home/kamil/motee/moote_v3.1/code/motee_v3/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd.h \
  /home/kamil/motee/moote_v3.1/code/motee_v3/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usb.h \
  /home/kamil/motee/moote_v3.1/code/motee_v3/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd_ex.h \
- /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/gpio.h
+ /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/gpio.h \
+ /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/dma.h
 
 /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/usart.h:
 
@@ -92,3 +93,5 @@ Src/usart.o: ../Src/usart.c \
 /home/kamil/motee/moote_v3.1/code/motee_v3/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd_ex.h:
 
 /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/gpio.h:
+
+/home/kamil/motee/moote_v3.1/code/motee_v3/Inc/dma.h:
