@@ -76,4 +76,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
  }
 }
 
+void timer_calllback(){
+ motor_pid_control = pid_calculate(encoder_ticks, (float)MOTOR_GetEncoderValue());
+ TIM4->CNT = 0;
+ MOTOR_SetSpeed(motor_pid_control);
+}
+
 /************************ KF **********************************END OF FILE****/

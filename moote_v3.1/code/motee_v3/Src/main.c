@@ -119,7 +119,13 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
+  MX_USB_DEVICE_Init();
+  MX_TIM4_Init();
+  MX_USART1_UART_Init();
   MX_ADC1_Init();
+  MX_TIM2_Init();
+  MX_TIM1_Init();
 
   /* USER CODE BEGIN 2 */
   communication_init();
@@ -146,7 +152,7 @@ int main(void)
 	  //MessageLength = sprintf(DataToSend, "Control:%d\n\r", (int)motor_pid_control);
 	  //CDC_Transmit_FS(DataToSend, MessageLength);
 
-	  if(frameReady){
+	  if(frameReady==0){
 	  		//handle_communication(&speed, &direction);
 		  HAL_GPIO_WritePin(RS485_DIR_GPIO_Port, RS485_DIR_Pin, GPIO_PIN_SET);
 		  	  HAL_UART_Transmit_DMA(&huart1, rxBuffer, 8);
@@ -157,7 +163,7 @@ int main(void)
 
 	  HAL_GPIO_TogglePin(USER_LED_GPIO_Port, USER_LED_Pin);
 
-	  //MOTOR_SetSpeed(40);
+	  //MOTOR_SetSpeed(100);
 	  HAL_Delay(100);
   }
   /* USER CODE END 3 */

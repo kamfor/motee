@@ -28,7 +28,11 @@ Src/stm32f1xx_it.o: ../Src/stm32f1xx_it.c \
  /home/kamil/motee/moote_v3.1/code/motee_v3/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd.h \
  /home/kamil/motee/moote_v3.1/code/motee_v3/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usb.h \
  /home/kamil/motee/moote_v3.1/code/motee_v3/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd_ex.h \
- /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/stm32f1xx_it.h
+ /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/stm32f1xx_it.h \
+ /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/motor.h \
+ /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/adc.h \
+ /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/tim.h \
+ /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/gpio.h
 
 /home/kamil/motee/moote_v3.1/code/motee_v3/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 
@@ -89,3 +93,11 @@ Src/stm32f1xx_it.o: ../Src/stm32f1xx_it.c \
 /home/kamil/motee/moote_v3.1/code/motee_v3/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd_ex.h:
 
 /home/kamil/motee/moote_v3.1/code/motee_v3/Inc/stm32f1xx_it.h:
+
+/home/kamil/motee/moote_v3.1/code/motee_v3/Inc/motor.h:
+
+/home/kamil/motee/moote_v3.1/code/motee_v3/Inc/adc.h:
+
+/home/kamil/motee/moote_v3.1/code/motee_v3/Inc/tim.h:
+
+/home/kamil/motee/moote_v3.1/code/motee_v3/Inc/gpio.h:
