@@ -20,7 +20,7 @@ void MOTOR_Init(void){
 	 MX_TIM1_Init(); //200Hz Loop for PID
 
 	 HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
-	 HAL_TIM_Base_Start_IT(&htim2);
+	 HAL_TIM_Base_Start_IT(&htim1);
 	 HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
 	 HAL_ADC_Start(&hadc1);
 
@@ -37,17 +37,16 @@ void MOTOR_Disable(){
 }
 
 void MOTOR_SetDirForward(){
-	HAL_GPIO_WritePin(MOTOR_DIR_GPIO_Port, MOTOR_DIR_Pin, GPIO_PIN_SET);
 }
 void MOTOR_SetDirReverse(){
-	HAL_GPIO_WritePin(MOTOR_DIR_GPIO_Port, MOTOR_DIR_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(MOTOR_PHASE_GPIO_Port, MOTOR_PHASE_Pin, GPIO_PIN_RESET);
 }
 
 void MOTOR_SetSpeed(float speed){
 	if (speed >= 0.0){
-		MOTOR_SetDirReverse();
-	}else{
 		MOTOR_SetDirForward();
+	}else{
+		MOTOR_SetDirReverse();
 	}
 
 	TIM2->CCR1 = (uint16_t)speed;

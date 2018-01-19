@@ -78,7 +78,6 @@ extern volatile float encoder_ticks;
 extern volatile float motor_pid_control;
 extern volatile uint8_t frameReady;
 extern uint8_t rxBuffer[8];
-extern UART_HandleTypeDef huart1;
 
 /* USER CODE END PV */
 
@@ -128,9 +127,8 @@ int main(void)
   MX_TIM1_Init();
 
   /* USER CODE BEGIN 2 */
-  communication_init();
+  //communication_init();
   MOTOR_Init();
-  int i=0;
 
 
   /* USER CODE END 2 */
@@ -147,24 +145,17 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
+	  if(frameReady==1){
 
-
-	  //MessageLength = sprintf(DataToSend, "Control:%d\n\r", (int)motor_pid_control);
-	  //CDC_Transmit_FS(DataToSend, MessageLength);
-
-	  if(frameReady==0){
-	  		//handle_communication(&speed, &direction);
-		  HAL_GPIO_WritePin(RS485_DIR_GPIO_Port, RS485_DIR_Pin, GPIO_PIN_SET);
-		  	  HAL_UART_Transmit_DMA(&huart1, rxBuffer, 8);
-		  	HAL_GPIO_WritePin(RS485_DIR_GPIO_Port, RS485_DIR_Pin, GPIO_PIN_RESET);
-	  		frameReady=0;
+		frameReady=0;
+		handle_communication(&speed, &direction);
+		HAL_GPIO_TogglePin(USER_LED_GPIO_Port, USER_LED_Pin);
+		MOTOR_SetSpeed(speed);
 	  }
 
-
-	  HAL_GPIO_TogglePin(USER_LED_GPIO_Port, USER_LED_Pin);
-
-	  //MOTOR_SetSpeed(100);
-	  HAL_Delay(100);
+	  HAL_Delay(20);
+	  //MessageLength = sprintf(DataToSend, "Control:%d\n\r", (int)motor_pid_control);
+	  //CDC_Transmit_FS(DataToSend, MessageLength);
   }
   /* USER CODE END 3 */
 

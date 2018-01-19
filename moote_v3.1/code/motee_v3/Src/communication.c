@@ -43,6 +43,9 @@ void handle_communication(uint16_t *speed, uint8_t *dir){ // add params change f
 	if(rxBuffer[1]==myAddress||rxBuffer[2]==myGroupAddress||rxBuffer[1]==0){
 		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 
+		uint16_t encoderValue = MOTOR_GetEncoderValue();
+		TIM4->CNT = 0;
+
 		switch (rxBuffer[0]){
 		case 0: //start/stop answering
 			if(rxBuffer[2]==1)
@@ -67,14 +70,16 @@ void handle_communication(uint16_t *speed, uint8_t *dir){ // add params change f
 			txBuffer[2] = (uint8_t)(*speed>>8);
 			txBuffer[3] = (uint8_t)*speed;
 			txBuffer[4] = *dir;
-			txBuffer[5] = (uint8_t)((*speed)>>8);
-			txBuffer[6] = (uint8_t)(*speed);
+			txBuffer[5] = (uint8_t)((encoderValue)>>8);
+			txBuffer[6] = (uint8_t)(encoderValue);
 			txBuffer[7] = 0;
 		break;
 		}
-		HAL_GPIO_WritePin(RS485_DIR_GPIO_Port, RS485_DIR_Pin, GPIO_PIN_SET);
-		HAL_UART_Transmit_DMA(&huart1, txBuffer, 8);
-		HAL_GPIO_WritePin(RS485_DIR_GPIO_Port, RS485_DIR_Pin, GPIO_PIN_RESET);
+		//check context
+		CDC_Transmit_FS(txBuffer, 8);
+		//HAL_GPIO_WritePin(RS485_DIR_GPIO_Port, RS485_DIR_Pin, GPIO_PIN_SET);
+		///HAL_UART_Transmit_DMA(&huart1, txBuffer, 8);
+		//HAL_GPIO_WritePin(RS485_DIR_GPIO_Port, RS485_DIR_Pin, GPIO_PIN_RESET);
 	}
 }
 

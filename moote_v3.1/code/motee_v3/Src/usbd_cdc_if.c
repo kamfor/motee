@@ -64,6 +64,9 @@
   * @{
   */ 
 /* USER CODE BEGIN PRIVATE_TYPES */
+  extern uint8_t rxBuffer[8];
+  extern volatile uint8_t frameReady;
+
 /* USER CODE END PRIVATE_TYPES */ 
 /**
   * @}
@@ -75,8 +78,8 @@
 /* USER CODE BEGIN PRIVATE_DEFINES */
 /* Define size for the receive and transmit buffer over CDC */
 /* It's up to user to redefine and/or remove those define */
-#define APP_RX_DATA_SIZE  2048
-#define APP_TX_DATA_SIZE  2048
+#define APP_RX_DATA_SIZE  8
+#define APP_TX_DATA_SIZE  8
 /* USER CODE END PRIVATE_DEFINES */
 /**
   * @}
@@ -266,8 +269,11 @@ static int8_t CDC_Control_FS  (uint8_t cmd, uint8_t* pbuf, uint16_t length)
 static int8_t CDC_Receive_FS (uint8_t* Buf, uint32_t *Len)
 {
   /* USER CODE BEGIN 6 */
-  USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
+  USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &rxBuffer[0]);
   USBD_CDC_ReceivePacket(&hUsbDeviceFS);
+
+  frameReady = 1;
+
   return (USBD_OK);
   /* USER CODE END 6 */ 
 }

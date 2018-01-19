@@ -18,7 +18,7 @@
 
 void communication_init();
 void handle_communication(uint16_t*, uint8_t*);
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef*);
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart);
 void send_hello();
 
 #endif /* COMMUNICATION_H_ */
