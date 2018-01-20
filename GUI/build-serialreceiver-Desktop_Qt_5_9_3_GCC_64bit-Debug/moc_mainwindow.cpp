@@ -99,22 +99,22 @@ static const uint qt_meta_data_MainWindow[] = {
        9,    0,  147,    2, 0x08 /* Private */,
       10,    1,  148,    2, 0x08 /* Private */,
       13,    0,  151,    2, 0x08 /* Private */,
-      14,    2,  152,    2, 0x08 /* Private */,
-      15,    0,  157,    2, 0x08 /* Private */,
-      16,    0,  158,    2, 0x08 /* Private */,
-      17,    0,  159,    2, 0x08 /* Private */,
-      18,    0,  160,    2, 0x08 /* Private */,
-      19,    0,  161,    2, 0x08 /* Private */,
-      20,    0,  162,    2, 0x08 /* Private */,
-      21,    1,  163,    2, 0x08 /* Private */,
-      22,    1,  166,    2, 0x08 /* Private */,
-      23,    1,  169,    2, 0x08 /* Private */,
-      24,    1,  172,    2, 0x08 /* Private */,
-      25,    1,  175,    2, 0x08 /* Private */,
-      26,    0,  178,    2, 0x08 /* Private */,
-      27,    0,  179,    2, 0x08 /* Private */,
-      28,    0,  180,    2, 0x08 /* Private */,
-      29,    1,  181,    2, 0x08 /* Private */,
+      14,    3,  152,    2, 0x08 /* Private */,
+      15,    0,  159,    2, 0x08 /* Private */,
+      16,    0,  160,    2, 0x08 /* Private */,
+      17,    0,  161,    2, 0x08 /* Private */,
+      18,    0,  162,    2, 0x08 /* Private */,
+      19,    0,  163,    2, 0x08 /* Private */,
+      20,    0,  164,    2, 0x08 /* Private */,
+      21,    1,  165,    2, 0x08 /* Private */,
+      22,    1,  168,    2, 0x08 /* Private */,
+      23,    1,  171,    2, 0x08 /* Private */,
+      24,    1,  174,    2, 0x08 /* Private */,
+      25,    1,  177,    2, 0x08 /* Private */,
+      26,    0,  180,    2, 0x08 /* Private */,
+      27,    0,  181,    2, 0x08 /* Private */,
+      28,    0,  182,    2, 0x08 /* Private */,
+      29,    1,  183,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -126,7 +126,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 11,   12,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,    2,    2,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Int,    2,    2,    2,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -161,7 +161,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 6: _t->readData(); break;
         case 7: _t->handleError((*reinterpret_cast< QSerialPort::SerialPortError(*)>(_a[1]))); break;
         case 8: _t->saveFile(); break;
-        case 9: _t->realtimeDataSlot((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 9: _t->realtimeDataSlot((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3]))); break;
         case 10: _t->changePlotCaption(); break;
         case 11: _t->savePlot(); break;
         case 12: _t->extendPlotScale(); break;

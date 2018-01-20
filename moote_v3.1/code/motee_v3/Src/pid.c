@@ -24,6 +24,18 @@ void pid_init(float kp, float ki, float kd)
 	pid_params.err_last = 0;
 }
 
+void changeKp(float kp){
+	pid_params.kp = kp;
+}
+
+void changeKd(float kd){
+	pid_params.kd = kd;
+}
+
+void changeKi(float ki){
+	pid_params.ki = ki;
+}
+
 float pid_calculate(float set_val, float read_val)
 {
 	float err_d, u;

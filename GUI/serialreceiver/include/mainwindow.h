@@ -53,7 +53,7 @@ private slots:
     void readData();
     void handleError(QSerialPort::SerialPortError error);
     void saveFile();
-    void realtimeDataSlot(int, int);
+    void realtimeDataSlot(int,int,int);
     void changePlotCaption();
     void savePlot();
     void extendPlotScale();
@@ -108,6 +108,7 @@ private:
     QComboBox *groupAddress;
     QVector<motee> *devicesParams;
     uint8_t currentMotee;
+    int setSpeed;
     motee defaultMotee;
 
 

@@ -70,14 +70,11 @@ uint8_t DataToSend[40]; // Tablica zawierajaca dane do wyslania
 uint8_t MessageLength = 0; // Zawiera dlugosc wysylanej wiadomosci
 uint16_t pulse_count = 0; // Licznik impulsow
 
-
-uint16_t speed=0;
-uint8_t direction = 0;
 extern volatile uint8_t frameReady;
-extern volatile float encoder_ticks;
-extern volatile float motor_pid_control;
-extern volatile uint8_t frameReady;
-extern uint8_t rxBuffer[8];
+extern volatile float set_point;
+extern volatile uint8_t set_direction;
+uint16_t speed;
+uint8_t dir;
 
 /* USER CODE END PV */
 
@@ -127,7 +124,7 @@ int main(void)
   MX_TIM1_Init();
 
   /* USER CODE BEGIN 2 */
-  //communication_init();
+  communication_init();
   MOTOR_Init();
 
 
@@ -135,10 +132,6 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-
-  //MOTOR_SetSpeed(200);
-
-  encoder_ticks = 10.0;
 
   while (1)
   {
@@ -148,14 +141,14 @@ int main(void)
 	  if(frameReady==1){
 
 		frameReady=0;
-		handle_communication(&speed, &direction);
-		HAL_GPIO_TogglePin(USER_LED_GPIO_Port, USER_LED_Pin);
-		MOTOR_SetSpeed(speed);
-	  }
+		handle_communication(&speed, &dir);
+		set_point = speed/20;
+		set_direction = dir;
 
+	  }
 	  HAL_Delay(20);
-	  //MessageLength = sprintf(DataToSend, "Control:%d\n\r", (int)motor_pid_control);
-	  //CDC_Transmit_FS(DataToSend, MessageLength);
+	  HAL_GPIO_TogglePin(USER_LED_GPIO_Port, USER_LED_Pin);
+	  send_controls();
   }
   /* USER CODE END 3 */
 

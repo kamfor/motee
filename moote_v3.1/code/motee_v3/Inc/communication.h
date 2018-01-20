@@ -18,6 +18,7 @@
 
 void communication_init();
 void handle_communication(uint16_t*, uint8_t*);
+void send_controls();
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart);
 void send_hello();
 

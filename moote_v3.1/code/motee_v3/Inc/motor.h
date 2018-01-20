@@ -25,7 +25,6 @@ void MOTOR_Enable(void);
 void MOTOR_Disable(void);
 void MOTOR_SetDirForward(void);
 void MOTOR_SetDirReverse(void);
-void timer_calllback(void);
 uint16_t MOTOR_GetCurrent(void);
 uint16_t MOTOR_GetEncoderValue(void);
 

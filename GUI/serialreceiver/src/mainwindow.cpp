@@ -43,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
     defaultMotee.kp = 50;
     defaultMotee.kd = 0;
     defaultMotee.ki = 100;
+    setSpeed = 0;
 
     for(int i=0; i<256; i++){
         devicesParams->push_back(defaultMotee);
@@ -179,7 +180,7 @@ void MainWindow::readData(){
 void MainWindow::dataInterpreter(QByteArray data){
 
     int functionId = data.at(0);
-    int speed;
+    int actSpeed;
     int current;
     int direction;
     int incommingAddr;
@@ -187,11 +188,15 @@ void MainWindow::dataInterpreter(QByteArray data){
     switch (functionId){
     case 0:
         //if (data.at(1)==actualSelectedDrive); display only selected device
-        speed  = from8to16(data.at(2), data.at(3));
+        actSpeed  = from8to16(data.at(2), data.at(3));
         current  = from8to16(data.at(5), data.at(6));
         direction = data.at(4);
-        realtimeDataSlot(speed,1000-current);
-        qDebug() << speed << current << direction;
+        if(direction==1){
+            actSpeed = -1*actSpeed;
+            current = -1*current;
+        }
+        realtimeDataSlot(actSpeed*20,setSpeed,current);
+        qDebug() << actSpeed << current << direction;
     break;
     case 1:
         incommingAddr = data.at(1);
@@ -269,10 +274,10 @@ void MainWindow::createLayouts(){
     driveParameters[0]->setRange(-1000,1000);
     driveParameters[1]->setRange(0,1000);
     driveParameters[1]->setValue(1000);
-    driveParameters[2]->setRange(0,100);
-    driveParameters[2]->setValue(50);
-    driveParameters[3]->setRange(0,100);
-    driveParameters[4]->setRange(0,100);
+    driveParameters[2]->setRange(0,1000);
+    driveParameters[2]->setValue(500);
+    driveParameters[3]->setRange(0,1000);
+    driveParameters[4]->setRange(0,1000);
     driveParameters[4]->setValue(100);
 
     QVBoxLayout *centerLayout = new QVBoxLayout;
@@ -383,6 +388,9 @@ void MainWindow::generatePlot(){
   customPlot->addGraph(); // red line
   customPlot->graph(1)->setPen(QPen(Qt::red));
 
+  customPlot->addGraph(); // red line
+  customPlot->graph(2)->setPen(QPen(Qt::green));
+
 
   customPlot->xAxis->setTickLabelType(QCPAxis::ltDateTime);
   customPlot->xAxis->setDateTimeFormat("hh:mm:ss");
@@ -397,12 +405,13 @@ void MainWindow::generatePlot(){
   customPlot->replot();
 }
 
-void MainWindow::realtimeDataSlot(int value, int value2){
+void MainWindow::realtimeDataSlot(int speed, int setPoint, int current){
 
     double key = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
 
-    double value0 = (double)value;
-    double value1 = (double)value2;
+    double value0 = (double)speed;
+    double value1 = (double)setPoint;
+    double value2 = (double)current;
 
     static double lastPointKey = 0;
     if (key-lastPointKey > 0.02) // at most add point every 10 ms
@@ -410,9 +419,11 @@ void MainWindow::realtimeDataSlot(int value, int value2){
       // add data to lines:
       customPlot->graph(0)->addData(key,value0);
       customPlot->graph(1)->addData(key, value1);
+      customPlot->graph(2)->addData(key, value2);
       // remove data of lines that's outside visible range:
       customPlot->graph(0)->removeDataBefore(key-8);
       customPlot->graph(1)->removeDataBefore(key-8);
+      customPlot->graph(2)->removeDataBefore(key-8);
       // rescale value (vertical) axis to fit the current data:
       if (autoscale){
           customPlot->graph(0)->rescaleValueAxis();
@@ -498,6 +509,7 @@ void MainWindow::setPlotColor(){
 
 void MainWindow::speedChanged(int s){
     this->speedLabel->setText("Speed: " + QString::number(s));
+    setSpeed = s;
     QByteArray txBuffer;
     uint16_t speed = (uint16_t)abs(s);
     txBuffer.resize(8);
@@ -524,17 +536,17 @@ void MainWindow::maxSpeedChanged(int s){
 }
 
 void MainWindow::kpChanged(int s){
-    this->kpLabel->setText("Kp: " + QString::number(s));
+    this->kpLabel->setText("Kp: " + QString::number(s/10));
     this->newKp = true;
 }
 
 void MainWindow::kdChanged(int s){
-    this->kdLabel->setText("Ki: " + QString::number(s));
+    this->kdLabel->setText("Ki: " + QString::number(s/10));
     this->newKd = true;
 }
 
 void MainWindow::kiChanged(int s){
-    this->kiLabel->setText("Kd: " + QString::number(s));
+    this->kiLabel->setText("Kd: " + QString::number(s/10));
     this->newKi = true;
 }
 
@@ -617,9 +629,9 @@ void MainWindow::sendFrame(){ //disable if parameters didn't chanched
 void MainWindow::resetParameters(){
     this->driveParameters[0]->setValue(0);
     this->driveParameters[1]->setValue(1000);
-    this->driveParameters[2]->setValue(50);
-    this->driveParameters[3]->setValue(0);
-    this->driveParameters[4]->setValue(100);
+    this->driveParameters[2]->setValue(500);
+    this->driveParameters[3]->setValue(10);
+    this->driveParameters[4]->setValue(20);
     this->address->setCurrentIndex(0);
     this->groupAddress->setCurrentIndex(0);
 }
