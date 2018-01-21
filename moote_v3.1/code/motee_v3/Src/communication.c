@@ -7,7 +7,6 @@
 
 #include "communication.h"
 
-
 volatile uint8_t frameReady = 0;
 volatile uint8_t rxBuffer[8];
 uint8_t txBuffer[8];
@@ -37,6 +36,7 @@ void communication_init(){
 	  MX_DMA_Init();
 	  MX_USART1_UART_Init();
 	  HAL_UART_Receive_DMA(&huart1, rxBuffer, 8);
+	  HAL_GPIO_WritePin(RS485_DIR_GPIO_Port, RS485_DIR_Pin, GPIO_PIN_RESET); //enable rs485 tx
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {

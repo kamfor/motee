@@ -120,8 +120,9 @@ int main(void)
 	  if(frameReady==1){
 		frameReady=0;
 		handle_communication();
+		HAL_GPIO_TogglePin(USER_LED_GPIO_Port, USER_LED_Pin);
 	  }
-	  HAL_GPIO_TogglePin(USER_LED_GPIO_Port, USER_LED_Pin);
+	  //HAL_GPIO_TogglePin(USER_LED_GPIO_Port, USER_LED_Pin);
 	  HAL_Delay(20);
 	  send_controls();
   }

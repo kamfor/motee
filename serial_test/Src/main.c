@@ -45,7 +45,6 @@
 
 /* USER CODE BEGIN Includes */
 #include "communication.h"
-#include "oled.h"
 
 
 
@@ -56,12 +55,7 @@
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 uint16_t speed=0;
-uint8_t direction = 0;
-extern volatile uint8_t frameReady;
-extern const uint8_t c_chVBLogo[6144];
-OLED_DISPLAY_DATA_St OledDisplayData;
-
-
+uint8_t i = 0;
 
 /* USER CODE END PV */
 
@@ -107,18 +101,10 @@ int main(void)
   MX_DMA_Init();
   MX_USART2_UART_Init();
   MX_USART6_UART_Init();
-  MX_SPI1_Init();
 
   /* USER CODE BEGIN 2 */
   communicationInit();
-  oled_Init();
 
-
-  HAL_Delay(100);
-
-  batteryDisplayInit();
-
-  OledDisplayData.batteryLevel = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -127,21 +113,20 @@ int main(void)
   {
   /* USER CODE END WHILE */
 
+
   /* USER CODE BEGIN 3 */
-	if(frameReady){
-		handleCommunication(&speed, &direction);
-		frameReady=0;
+	for(i=0; i<100; i++){
+		speed = i*10;
+		setSpeed(speed);
+		HAL_Delay(100);
+		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 	}
-	//ssd1306_display_string(10, 10, "MOTEE", 16, 1);
-	//ssd1306_draw_bitmap(0, 16, c_chVBLogo, 128, 48);
-
-	//ssd1306_refresh_gram();
-	if(OledDisplayData.batteryLevel >5)OledDisplayData.batteryLevel =1;
-	displayBatteryLevel();
-
-	HAL_Delay(1000);
-
-	OledDisplayData.batteryLevel++;
+	for(i=99; i>0; i--){
+		speed = i*10;
+		setSpeed(speed);
+		HAL_Delay(100);
+		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+	}
 
   }
   /* USER CODE END 3 */

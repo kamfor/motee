@@ -4,9 +4,7 @@
   * Description        : This file provides code for the controlling DC motor..
   *****************************************************************************/
 
-/* Includes ------------------------------------------------------------------*/
 #include "motor.h"
-
 
 float set_point;
 uint8_t set_direction;
@@ -15,7 +13,6 @@ float motor_pid_control;
 uint8_t controlOn=0;
 uint16_t speedRegister;
 uint16_t maxSpeed=1000;
-
 
 void MOTOR_Init(void){
 	 MX_GPIO_Init(); //GPIO controll

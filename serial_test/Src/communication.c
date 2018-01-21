@@ -6,6 +6,7 @@
  */
 
 #include "communication.h"
+#include "usart.h"
 
 volatile uint8_t frameReady = 0;
 uint8_t txBuffer[8];
@@ -17,8 +18,29 @@ uint8_t myAddress = 10;
 uint8_t myGroupAddress = 2;
 uint8_t answerFlag=0;
 
+extern UART_HandleTypeDef huart6;
+
 void sendHello(){
 	HAL_UART_Transmit_DMA(&huart2, "HELLO\r\n", 7);
+}
+
+void setSpeed(int s){
+	uint16_t speed;
+	speed = (uint16_t)abs(s);
+
+	txBuffer[0] = 2;
+	txBuffer[1] = 0;
+	txBuffer[2] = 2;
+	txBuffer[3] = (uint8_t)(speed>>8);
+	txBuffer[4] = (uint8_t)speed;
+	if(s>=0){
+		txBuffer[5] = 0;
+	}
+	else txBuffer[5] = 1;
+	txBuffer[6] = 0;
+	txBuffer[7] = 0;
+	HAL_UART_Transmit_IT(&huart6, txBuffer, 8);
+
 }
 
 
@@ -71,7 +93,7 @@ void handleCommunication(uint16_t *speed, uint8_t *dir){ // add params change fu
 			txBuffer[7] = 0;
 		break;
 		}
-		HAL_UART_Transmit_DMA(&huart2, txBuffer, 8);
+
 	}
 }
 
