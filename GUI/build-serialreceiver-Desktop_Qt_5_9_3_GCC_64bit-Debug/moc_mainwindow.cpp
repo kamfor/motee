@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[30];
-    char stringdata0[374];
+    char stringdata0[365];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -58,9 +58,9 @@ QT_MOC_LITERAL(23, 283, 9), // "kpChanged"
 QT_MOC_LITERAL(24, 293, 9), // "kdChanged"
 QT_MOC_LITERAL(25, 303, 9), // "kiChanged"
 QT_MOC_LITERAL(26, 313, 14), // "addressChanged"
-QT_MOC_LITERAL(27, 328, 9), // "sendFrame"
-QT_MOC_LITERAL(28, 338, 15), // "resetParameters"
-QT_MOC_LITERAL(29, 354, 19) // "changeCurrentDevice"
+QT_MOC_LITERAL(27, 328, 10), // "resetFrame"
+QT_MOC_LITERAL(28, 339, 5), // "brake"
+QT_MOC_LITERAL(29, 345, 19) // "changeCurrentDevice"
 
     },
     "MainWindow\0openSerialPort\0\0closeSerialPort\0"
@@ -71,8 +71,8 @@ QT_MOC_LITERAL(29, 354, 19) // "changeCurrentDevice"
     "savePlot\0extendPlotScale\0dropPlotScale\0"
     "setPlotColor\0findDevices\0speedChanged\0"
     "maxSpeedChanged\0kpChanged\0kdChanged\0"
-    "kiChanged\0addressChanged\0sendFrame\0"
-    "resetParameters\0changeCurrentDevice"
+    "kiChanged\0addressChanged\0resetFrame\0"
+    "brake\0changeCurrentDevice"
 };
 #undef QT_MOC_LITERAL
 
@@ -174,8 +174,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 19: _t->kdChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 20: _t->kiChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 21: _t->addressChanged(); break;
-        case 22: _t->sendFrame(); break;
-        case 23: _t->resetParameters(); break;
+        case 22: _t->resetFrame(); break;
+        case 23: _t->brake(); break;
         case 24: _t->changeCurrentDevice((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }

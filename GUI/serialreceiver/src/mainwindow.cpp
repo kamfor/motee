@@ -79,12 +79,6 @@ MainWindow::MainWindow(QWidget *parent) :
     autoscale = true;
     changePlotCaption();
 
-    newAddres = false;
-    newMaxSpeed = false;
-    newKp = false;
-    newKd = false;
-    newKi = false;
-
     connect(serial, static_cast<void (QSerialPort::*)(QSerialPort::SerialPortError)>(&QSerialPort::error),this, &MainWindow::handleError);
     connect(serial, &QSerialPort::readyRead, this, &MainWindow::readData);
     connect(console, &Console::getData, this, &MainWindow::writeData);
@@ -119,6 +113,7 @@ void MainWindow::openSerialPort(){
         showStatusMessage(tr("Connected to %1 : %2, %3, %4, %5, %6")
                           .arg(p.name).arg(p.stringBaudRate).arg(p.stringDataBits)
                           .arg(p.stringParity).arg(p.stringStopBits).arg(p.stringFlowControl));
+        serial->flush();
     } else {
         QMessageBox::critical(this, tr("Error"), serial->errorString());
 
@@ -152,24 +147,20 @@ void MainWindow::about(){
 }
 
 void MainWindow::openSettings(){
-
     settings->show();
 }
 
 
 void MainWindow::clearConsole(){
-
     console->clear();
     filedata->clear();
 }
 
 void MainWindow::writeData(const QByteArray &data){
-
     serial->write(data);
 }
 
 void MainWindow::readData(){
-
     while(serial->waitForReadyRead(1));
     QByteArray data = serial->readAll();
     serial->flush();
@@ -178,7 +169,6 @@ void MainWindow::readData(){
 }
 
 void MainWindow::dataInterpreter(QByteArray data){
-
     int functionId = data.at(0);
     int actSpeed;
     int current;
@@ -218,7 +208,6 @@ void MainWindow::dataInterpreter(QByteArray data){
 
 
 void MainWindow::handleError(QSerialPort::SerialPortError error){
-
     if (error == QSerialPort::ResourceError) {
         QMessageBox::critical(this, tr("Critical Error"), serial->errorString());
         closeSerialPort();
@@ -226,14 +215,13 @@ void MainWindow::handleError(QSerialPort::SerialPortError error){
 }
 
 void MainWindow::initActionsConnections(){
-
     connect(buttons[0], SIGNAL (released()), this, SLOT (openSettings()));
     connect(buttons[1], SIGNAL (released()), this, SLOT (openSerialPort()));
     connect(buttons[2], SIGNAL (released()), this, SLOT (closeSerialPort()));
     connect(buttons[3], SIGNAL (released()), this, SLOT (clearConsole()));
     connect(buttons[4], SIGNAL (released()), this, SLOT (findDevices()));
-    connect(buttons[5], SIGNAL (released()), this, SLOT (sendFrame()));
-    connect(buttons[6], SIGNAL (released()), this, SLOT (resetParameters()));
+    connect(buttons[5], SIGNAL (released()), this, SLOT (resetFrame()));
+    connect(buttons[6], SIGNAL (released()), this, SLOT (brake()));
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::close);
     connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::about);
     connect(ui->actionSave, &QAction::triggered, this, &MainWindow::saveFile);
@@ -312,8 +300,8 @@ void MainWindow::createLayouts(){
     centerLayout->addLayout(addressLayout);
 
     buttons[4] = new QPushButton("Find",this);
-    buttons[5] = new QPushButton("Set",this);
-    buttons[6] = new QPushButton("Reset",this);
+    buttons[5] = new QPushButton("Reset",this);
+    buttons[6] = new QPushButton("Brake",this);
     QGroupBox *devList = new QGroupBox("Devices List:",this);
     QHBoxLayout *devListLayout = new QHBoxLayout;
     devListLayout->addWidget(devicesList);
@@ -504,7 +492,7 @@ void MainWindow::setPlotColor(){
     QColor plotColor;
     plotColor = QColorDialog::getColor(Qt::red, this);
     customPlot->graph(0)->setPen(QPen(plotColor));
-    customPlot->graph(1)->setPen(QPen(plotColor));
+    //customPlot->graph(1)->setPen(QPen(plotColor));
 }
 
 void MainWindow::speedChanged(int s){
@@ -514,7 +502,8 @@ void MainWindow::speedChanged(int s){
     uint16_t speed = (uint16_t)abs(s);
     txBuffer.resize(8);
     txBuffer[0] = 2;
-    txBuffer[1] = devicesParams->at(currentMotee).address; //selected device address
+    //txBuffer[1] = devicesParams->at(currentMotee).address; //selected device address
+    txBuffer[1] = 0;
     txBuffer[2] = devicesParams->at(currentMotee).groupAddress; //selected group address
     txBuffer[3] = (uint8_t)(speed>>8);
     txBuffer[4] = (uint8_t)speed;
@@ -525,6 +514,7 @@ void MainWindow::speedChanged(int s){
     else txBuffer[5] = 1;
     txBuffer[6] = 0;
     txBuffer[7] = 0;
+
     serial->write(txBuffer);
     while(serial->waitForBytesWritten(5));
     console->putData(txBuffer.toHex());
@@ -532,26 +522,101 @@ void MainWindow::speedChanged(int s){
 
 void MainWindow::maxSpeedChanged(int s){
     this->maxSpeedLabel->setText("maxSpeed: " + QString::number(s));
-    this->newMaxSpeed = true;
+    QByteArray txBuffer;
+    uint16_t userValue=(uint16_t)abs(s);
+    txBuffer.resize(8);
+    txBuffer[0] = 4; //functionID
+    txBuffer[1] = devicesParams->at(currentMotee).address; //selected device address
+    txBuffer[1] = 0;
+    txBuffer[2] = devicesParams->at(currentMotee).groupAddress; //selected group address
+    txBuffer[3] = (uint8_t)(userValue>>8);
+    txBuffer[4] = (uint8_t)userValue;
+    txBuffer[5] = 0;
+    txBuffer[6] = 0;
+    txBuffer[7] = 0;
+
+    serial->write(txBuffer);
+    while(serial->waitForBytesWritten(5));
+    console->putData(txBuffer.toHex());
 }
 
 void MainWindow::kpChanged(int s){
     this->kpLabel->setText("Kp: " + QString::number(s/10));
-    this->newKp = true;
+    QByteArray txBuffer;
+    uint16_t userValue=(uint16_t)abs(s);
+    txBuffer.resize(8);
+    txBuffer[0] = 5;
+    txBuffer[1] = devicesParams->at(currentMotee).address; //selected device address
+    txBuffer[1] = 0;
+    txBuffer[2] = devicesParams->at(currentMotee).groupAddress; //selected group address
+    txBuffer[3] = (uint8_t)(userValue>>8);
+    txBuffer[4] = (uint8_t)userValue;
+    txBuffer[5] = 0;
+    txBuffer[6] = 0;
+    txBuffer[7] = 0;
+
+    serial->write(txBuffer);
+    while(serial->waitForBytesWritten(5));
+    console->putData(txBuffer.toHex());
 }
 
 void MainWindow::kdChanged(int s){
-    this->kdLabel->setText("Ki: " + QString::number(s/10));
-    this->newKd = true;
+    this->kdLabel->setText("Kd: " + QString::number(s/10));
+    QByteArray txBuffer;
+    uint16_t userValue=(uint16_t)abs(s);
+    txBuffer.resize(8);
+    txBuffer[0] = 6;
+    txBuffer[1] = devicesParams->at(currentMotee).address; //selected device address
+    txBuffer[1] = 0;
+    txBuffer[2] = devicesParams->at(currentMotee).groupAddress; //selected group address
+    txBuffer[3] = (uint8_t)(userValue>>8);
+    txBuffer[4] = (uint8_t)userValue;
+    txBuffer[5] = 0;
+    txBuffer[6] = 0;
+    txBuffer[7] = 0;
+
+    serial->write(txBuffer);
+    while(serial->waitForBytesWritten(5));
+    console->putData(txBuffer.toHex());
 }
 
 void MainWindow::kiChanged(int s){
-    this->kiLabel->setText("Kd: " + QString::number(s/10));
-    this->newKi = true;
+    this->kiLabel->setText("Ki: " + QString::number(s/10));
+    QByteArray txBuffer;
+    uint16_t userValue=(uint16_t)abs(s);
+    txBuffer.resize(8);
+    txBuffer[0] = 7;
+    txBuffer[1] = devicesParams->at(currentMotee).address; //selected device address
+    txBuffer[1] = 0;
+    txBuffer[2] = devicesParams->at(currentMotee).groupAddress; //selected group address
+    txBuffer[3] = (uint8_t)(userValue>>8);
+    txBuffer[4] = (uint8_t)userValue;
+    txBuffer[5] = 0;
+    txBuffer[6] = 0;
+    txBuffer[7] = 0;
+
+    serial->write(txBuffer);
+    while(serial->waitForBytesWritten(5));
+    console->putData(txBuffer.toHex());
 }
 
 void MainWindow::addressChanged(){
-    this->newAddres = true;
+    QByteArray txBuffer;
+    txBuffer.resize(8);
+
+    txBuffer[0] = 3; //finctionID
+    txBuffer[1] = devicesParams->at(currentMotee).address; //selected device address
+    txBuffer[1] = 0;
+    txBuffer[2] = devicesParams->at(currentMotee).groupAddress; //selected group address
+    txBuffer[3] = (uint8_t)address->currentIndex();
+    txBuffer[4] = (uint8_t)groupAddress->currentIndex();
+    txBuffer[5] = 0;
+    txBuffer[6] = 0;
+    txBuffer[7] = 0;
+
+    serial->write(txBuffer);
+    while(serial->waitForBytesWritten(5));
+    console->putData(txBuffer.toHex());
 }
 
 
@@ -573,67 +638,45 @@ void MainWindow::findDevices(){
     console->putData(txBuffer.toHex());
 }
 
-void MainWindow::sendFrame(){ //disable if parameters didn't chanched
+void MainWindow::resetFrame(){ //disable if parameters didn't chanched
 
     QByteArray txBuffer;
     txBuffer.resize(8);
-    uint16_t userValue=0;
 
+    txBuffer[0] = 8; //functionID
     txBuffer[1] = devicesParams->at(currentMotee).address; //selected device address
+    txBuffer[1] = 0;
     txBuffer[2] = devicesParams->at(currentMotee).groupAddress; //selected group address
+    txBuffer[2] = 2;
+    txBuffer[3] = 0;
+    txBuffer[4] = 0;
     txBuffer[5] = 0;
     txBuffer[6] = 0;
     txBuffer[7] = 0;
-
-    if(newAddres){
-
-        txBuffer[0] = 3;
-        txBuffer[3] = (uint8_t)address->currentIndex();
-        txBuffer[4] = (uint8_t)groupAddress->currentIndex();
-        this->newAddres=false;
-    }
-     else if(newMaxSpeed){
-        userValue = driveParameters[1]->value();
-        txBuffer[3] = (uint8_t)(userValue>>8);
-        txBuffer[4] = (uint8_t)userValue;
-        txBuffer[0] = 4;
-        this->newMaxSpeed=false;
-    }
-    else if(newKp){
-        userValue = driveParameters[2]->value();
-        txBuffer[3] = (uint8_t)(userValue>>8);
-        txBuffer[4] = (uint8_t)userValue;
-        txBuffer[0] = 5;
-         this->newKp=false;
-    }
-    else if(newKd){
-        userValue = driveParameters[3]->value();
-        txBuffer[3] = (uint8_t)(userValue>>8);
-        txBuffer[4] = (uint8_t)userValue;
-        txBuffer[0] = 6;
-        this->newKd=false;
-    }
-    else if(newKi){
-        userValue = driveParameters[4]->value();
-        txBuffer[3] = (uint8_t)(userValue>>8);
-        txBuffer[4] = (uint8_t)userValue;
-        txBuffer[0] = 7;
-        this->newKi=false;
-    }
 
     serial->write(txBuffer);
     while(serial->waitForBytesWritten(5));
     console->putData(txBuffer.toHex());
 }
 
-void MainWindow::resetParameters(){
-    this->driveParameters[0]->setValue(0);
-    this->driveParameters[1]->setValue(1000);
-    this->driveParameters[2]->setValue(500);
-    this->driveParameters[3]->setValue(10);
-    this->driveParameters[4]->setValue(20);
-    this->address->setCurrentIndex(0);
-    this->groupAddress->setCurrentIndex(0);
+void MainWindow::brake(){
+    QByteArray txBuffer;
+    txBuffer.resize(8);
+
+    txBuffer[0] = 9; //functionID
+    txBuffer[1] = devicesParams->at(currentMotee).address; //selected device address
+    txBuffer[1] = 0;
+    txBuffer[2] = devicesParams->at(currentMotee).groupAddress; //selected group address
+    txBuffer[3] = 0;
+    txBuffer[4] = 0;
+    txBuffer[5] = 0;
+    txBuffer[6] = 0;
+    txBuffer[7] = 0;
+
+    serial->write(txBuffer);
+    while(serial->waitForBytesWritten(5));
+    console->putData(txBuffer.toHex());
+
 }
 
 int MainWindow::from8to16(uint8_t H, uint8_t L){

@@ -48,33 +48,18 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f1xx_hal.h"
-#include "adc.h"
-#include "dma.h"
-#include "tim.h"
-#include "usart.h"
-#include "usb_device.h"
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
-#include "usbd_cdc_if.h"
 #include "motor.h"
 #include "communication.h"
-
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-/* Private variables ---------------------------------------------------------*/
-uint8_t DataToSend[40]; // Tablica zawierajaca dane do wyslania
-uint8_t MessageLength = 0; // Zawiera dlugosc wysylanej wiadomosci
-uint16_t pulse_count = 0; // Licznik impulsow
 
 extern volatile uint8_t frameReady;
-extern volatile float set_point;
-extern volatile uint8_t set_direction;
-uint16_t speed;
-uint8_t dir;
 
 /* USER CODE END PV */
 
@@ -114,24 +99,18 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_DMA_Init();
-  MX_USB_DEVICE_Init();
-  MX_TIM4_Init();
-  MX_USART1_UART_Init();
-  MX_ADC1_Init();
-  MX_TIM2_Init();
-  MX_TIM1_Init();
 
   /* USER CODE BEGIN 2 */
-  communication_init();
   MOTOR_Init();
+  communication_init();
 
+  //MOTOR_pid_test();
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
 
   while (1)
   {
@@ -139,19 +118,14 @@ int main(void)
 
   /* USER CODE BEGIN 3 */
 	  if(frameReady==1){
-
 		frameReady=0;
-		handle_communication(&speed, &dir);
-		set_point = speed/20;
-		set_direction = dir;
-
+		handle_communication();
 	  }
-	  HAL_Delay(20);
 	  HAL_GPIO_TogglePin(USER_LED_GPIO_Port, USER_LED_Pin);
+	  HAL_Delay(20);
 	  send_controls();
   }
   /* USER CODE END 3 */
-
 }
 
 /** System Clock Configuration

@@ -1,6 +1,6 @@
 #include "pid.h"
 
-#define ERR_SUM_MAX		1000
+#define ERR_SUM_MAX		500
 
 struct pid_params
 {

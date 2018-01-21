@@ -66,8 +66,8 @@ private slots:
     void kdChanged(int);
     void kiChanged(int);
     void addressChanged();
-    void sendFrame();
-    void resetParameters();
+    void resetFrame();
+    void brake();
     void changeCurrentDevice(int);
 
 
@@ -113,11 +113,6 @@ private:
 
 
     bool autoscale;
-    bool newAddres;
-    bool newMaxSpeed;
-    bool newKp;
-    bool newKd;
-    bool newKi;
 };
 
 #endif // MAINWINDOW_H

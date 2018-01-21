@@ -64,7 +64,7 @@
   * @{
   */ 
 /* USER CODE BEGIN PRIVATE_TYPES */
-  extern uint8_t rxBuffer[8];
+  extern volatile uint8_t rxBuffer[8];
   extern volatile uint8_t frameReady;
 
 /* USER CODE END PRIVATE_TYPES */ 
