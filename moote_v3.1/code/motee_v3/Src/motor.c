@@ -6,15 +6,15 @@
 
 #include "motor.h"
 
-float set_point;
-uint8_t set_direction;
-uint16_t proces_variable;
-float motor_pid_control;
+float setPoint;
+float motorPidControl;
+uint8_t setDirection;
 uint8_t controlOn=0;
+uint16_t procesVariable;
 uint16_t speedRegister;
 uint16_t maxSpeed=1000;
 
-void MOTOR_Init(void){
+void MOTOR_init(void){
 	 MX_GPIO_Init(); //GPIO controll
 	 MX_TIM4_Init(); //encoder mode
 	 MX_ADC1_Init(); //current sense
@@ -31,25 +31,25 @@ void MOTOR_Init(void){
 
 void MOTOR_pid_test(){
 	controlOn = 1;
-	set_point = 10;
+	setPoint = 10;
 	HAL_Delay(1000);
 	HAL_Delay(1000);
 	controlOn = 0;
-	set_point = 0;
+	setPoint = 0;
 }
 
-void MOTOR_Enable(){
+void MOTOR_enable(){
 	HAL_GPIO_WritePin(MOTOR_SLEEP_GPIO_Port, MOTOR_SLEEP_Pin, GPIO_PIN_SET);
 }
 
-void MOTOR_Disable(){
+void MOTOR_disable(){
 	HAL_GPIO_WritePin(MOTOR_SLEEP_GPIO_Port, MOTOR_SLEEP_Pin, GPIO_PIN_RESET);
 }
 
-void MOTOR_SetDirForward(){
+void MOTOR_set_dir_forward(){
 	HAL_GPIO_WritePin(MOTOR_PHASE_GPIO_Port, MOTOR_PHASE_Pin, GPIO_PIN_RESET);
 }
-void MOTOR_SetDirReverse(){
+void MOTOR_set_dir_reverse(){
 	HAL_GPIO_WritePin(MOTOR_PHASE_GPIO_Port, MOTOR_PHASE_Pin, GPIO_PIN_SET);
 }
 void MOTOR_brake_on(){
@@ -68,15 +68,15 @@ void MOTOR_pid_off(){
 }
 
 void MOTOR_set_point(float point){
-	set_point = point;
+	setPoint = point;
 }
 
 float MOTOR_get_set_point(){
-	return set_point;
+	return setPoint;
 }
 
 void MOTOR_set_direction(uint8_t setDir){
-	set_direction = setDir;
+	setDirection = setDir;
 }
 
 void MOTOR_set_max_speed(uint16_t speed){
@@ -85,18 +85,18 @@ void MOTOR_set_max_speed(uint16_t speed){
 
 
 uint8_t MOTOR_get_direction(){
-	return set_direction;
+	return setDirection;
 }
 
 uint16_t MOTOR_get_proces_variable(){
-	return proces_variable;
+	return procesVariable;
 }
 
-void MOTOR_SetSpeed(float speed){
+void MOTOR_set_speed(float speed){
 	if (speed >= 0.0){
-		MOTOR_SetDirForward();
+		MOTOR_set_dir_forward();
 	}else{
-		MOTOR_SetDirReverse();
+		MOTOR_set_dir_reverse();
 		speed = -speed;
 	}
 	speedRegister = (uint16_t)speed;
@@ -105,12 +105,12 @@ void MOTOR_SetSpeed(float speed){
 	}else TIM2->CCR1 = speedRegister;
 }
 
-void MOTOR_GetEncoderValue(){
-	proces_variable = TIM4->CNT;
+void MOTOR_get_encoder_value(){
+	procesVariable = TIM4->CNT;
 	TIM4->CNT = 0;
 }
 
-uint16_t MOTOR_GetCurrent(){
+uint16_t MOTOR_get_current(){
 	uint16_t read =0;
 	if (HAL_ADC_PollForConversion(&hadc1, 10) == HAL_OK) {
 		read = HAL_ADC_GetValue(&hadc1);
@@ -120,20 +120,20 @@ uint16_t MOTOR_GetCurrent(){
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
-	MOTOR_GetEncoderValue();
+	MOTOR_get_encoder_value();
 	if(controlOn==1){
 
-		if (proces_variable>10000){
-			proces_variable = 65536-proces_variable;
+		if (procesVariable>10000){
+			procesVariable = 65536-procesVariable;
 		}
-		motor_pid_control = pid_calculate(set_point, (float)proces_variable);
-		if(set_direction==1){
-			motor_pid_control = -1.0*motor_pid_control;
+		motorPidControl = pid_calculate(setPoint, (float)procesVariable);
+		if(setDirection==1){
+			motorPidControl = -1.0*motorPidControl;
 		}
-		MOTOR_SetSpeed(motor_pid_control);
+		MOTOR_set_speed(motorPidControl);
 	}
 	else {
-	MOTOR_SetSpeed(0);
+	MOTOR_set_speed(0);
 	}
 }
 

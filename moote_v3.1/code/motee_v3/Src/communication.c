@@ -9,6 +9,7 @@
 
 volatile uint8_t frameReady = 0;
 volatile uint8_t rxBuffer[8];
+
 uint8_t txBuffer[8];
 uint8_t myAddress = 10;
 uint8_t myGroupAddress = 2;
@@ -23,11 +24,11 @@ void sendHello(){
 	HAL_UART_Transmit_DMA(&huart1, "HELLO\r\n", 7);
 }
 
-void startAnswering(){
+void start_answering(){
 	answerFlag = 1;
 }
 
-void stopAnswering(){
+void stop_answering(){
 	answerFlag = 0;
 }
 
@@ -52,9 +53,9 @@ void handle_communication(){
 		switch (rxBuffer[0]){
 		case 0: //start/stop answering
 			if(rxBuffer[2]==1){
-				startAnswering();
+				start_answering();
 			}
-			else stopAnswering();
+			else stop_answering();
 		break;
 		case 1: //send identification flag
 			txBuffer[0] = 1;
@@ -69,44 +70,44 @@ void handle_communication(){
 		break;
 		case 2: //set motor speed
 			MOTOR_pid_on();
-			startAnswering();
+			start_answering();
 			MOTOR_brake_off();
 			MOTOR_set_point((float)((uint16_t)rxBuffer[3] << 8 |rxBuffer[4])/20);
 			MOTOR_set_direction(rxBuffer[5]);
 		break;
 		case 3: //change address
-			stopAnswering();
+			stop_answering();
 			MOTOR_pid_off();
 			myAddress = rxBuffer[4];
 			myGroupAddress = rxBuffer[5];
 		break;
 		case 4: //change MaxSpeed
 			MOTOR_pid_off();
-			stopAnswering();
+			stop_answering();
 			param = (uint16_t)rxBuffer[3] << 8 |rxBuffer[4];
 			MOTOR_set_max_speed(param);
 		break;
 		case 5: //change Kp
 			MOTOR_pid_off();
-			stopAnswering();
+			stop_answering();
 			param = (uint16_t)rxBuffer[3] << 8 |rxBuffer[4];
-			changeKp((float)param/10);
+			change_kp((float)param/10);
 		break;
 		case 6: //change Kd
 			MOTOR_pid_off();
-			stopAnswering();
+			stop_answering();
 			param = (uint16_t)rxBuffer[3] << 8 |rxBuffer[4];
-			changeKp((float)param/10);
+			change_kp((float)param/10);
 		break;
 		case 7: //change Ki
 			MOTOR_pid_off();
-			stopAnswering();
+			stop_answering();
 			param = (uint16_t)rxBuffer[3] << 8 |rxBuffer[4];
-			changeKp((float)param/10);
+			change_kp((float)param/10);
 		break;
 		case 8: //reset
 			MOTOR_pid_off();
-			stopAnswering();
+			stop_answering();
 			pid_init(50.0, 2.0, 1.0);
 			MOTOR_set_max_speed(1000);
 		break;
@@ -130,9 +131,9 @@ void send_controls(){
 
 	if(answerFlag){
 
-		actCurrent = MOTOR_GetCurrent();
+		actCurrent = MOTOR_get_current();
 		actSpeed = MOTOR_get_proces_variable();
-		txBuffer[0] = 0; //functionId
+		txBuffer[0] = 0;
 		txBuffer[1] = myAddress;
 		txBuffer[2] = (uint8_t)(actSpeed>>8);
 		txBuffer[3] = (uint8_t)actSpeed;
@@ -146,6 +147,5 @@ void send_controls(){
 	//HAL_GPIO_WritePin(RS485_DIR_GPIO_Port, RS485_DIR_Pin, GPIO_PIN_SET);
 	///HAL_UART_Transmit_DMA(&huart1, txBuffer, 8);
 	//HAL_GPIO_WritePin(RS485_DIR_GPIO_Port, RS485_DIR_Pin, GPIO_PIN_RESET);
-
 }
 

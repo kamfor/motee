@@ -25,7 +25,7 @@ void handle_communication();
 void send_controls();
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart);
 void send_hello();
-void startAnswering();
-void stopAnswering();
+void start_answering();
+void stop_answering();
 
 #endif /* COMMUNICATION_H_ */

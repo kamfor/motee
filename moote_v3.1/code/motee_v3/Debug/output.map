@@ -27,21 +27,21 @@ param               0x2               Src/communication.o
 htim4               0x40              Src/tim.o
 speedRegister       0x2               Src/motor.o
 uwTick              0x4               Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
-motor_pid_control   0x4               Src/motor.o
 pFlash              0x20              Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.o
 UserRxBufferFS      0x8               Src/usbd_cdc_if.o
 hdma_usart1_tx      0x44              Src/usart.o
 hadc1               0x30              Src/adc.o
+motorPidControl     0x4               Src/motor.o
 hdma_usart1_rx      0x44              Src/usart.o
 huart1              0x40              Src/usart.o
-set_point           0x4               Src/motor.o
 UserTxBufferFS      0x8               Src/usbd_cdc_if.o
-proces_variable     0x2               Src/motor.o
 rxBuffer            0x8               Src/communication.o
 htim1               0x40              Src/tim.o
 txBuffer            0x8               Src/communication.o
+procesVariable      0x2               Src/motor.o
+setDirection        0x1               Src/motor.o
 htim2               0x40              Src/tim.o
-set_direction       0x1               Src/motor.o
+setPoint            0x4               Src/motor.o
 hpcd_USB_FS         0x460             Src/usbd_conf.o
 USBD_StrDesc        0x200             Src/usbd_desc.o
 flagStatus          0x1               Src/communication.o
@@ -4173,9 +4173,9 @@ Discarded input sections
  .text          0x0000000000000000        0x0 Src/motor.o
  .text.MOTOR_pid_test
                 0x0000000000000000       0x34 Src/motor.o
- .text.MOTOR_Enable
+ .text.MOTOR_enable
                 0x0000000000000000       0x14 Src/motor.o
- .text.MOTOR_Disable
+ .text.MOTOR_disable
                 0x0000000000000000       0x14 Src/motor.o
  .text.MOTOR_get_set_point
                 0x0000000000000000        0xc Src/motor.o
@@ -4242,7 +4242,7 @@ Discarded input sections
  .group         0x0000000000000000        0x8 Src/pid.o
  .text          0x0000000000000000        0x0 Src/pid.o
  .data          0x0000000000000000        0x0 Src/pid.o
- .text.changeKd
+ .text.change_kd
                 0x0000000000000000        0xc Src/pid.o
  .text.changeKi
                 0x0000000000000000        0xc Src/pid.o
@@ -6079,48 +6079,48 @@ LOAD /home/kamil/eclipse/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.
  .text.HAL_ADC_MspInit
                 0x0000000008004774       0x44 Src/adc.o
                 0x0000000008004774                HAL_ADC_MspInit
- .text.startAnswering
+ .text.start_answering
                 0x00000000080047b8        0xc Src/communication.o
-                0x00000000080047b8                startAnswering
- .text.stopAnswering
+                0x00000000080047b8                start_answering
+ .text.stop_answering
                 0x00000000080047c4        0xc Src/communication.o
-                0x00000000080047c4                stopAnswering
+                0x00000000080047c4                stop_answering
  .text.communication_init
-                0x00000000080047d0       0x24 Src/communication.o
+                0x00000000080047d0       0x34 Src/communication.o
                 0x00000000080047d0                communication_init
  .text.HAL_UART_RxCpltCallback
-                0x00000000080047f4       0x20 Src/communication.o
-                0x00000000080047f4                HAL_UART_RxCpltCallback
+                0x0000000008004804       0x20 Src/communication.o
+                0x0000000008004804                HAL_UART_RxCpltCallback
  .text.handle_communication
-                0x0000000008004814      0x1a0 Src/communication.o
-                0x0000000008004814                handle_communication
+                0x0000000008004824      0x1a0 Src/communication.o
+                0x0000000008004824                handle_communication
  .text.send_controls
-                0x00000000080049b4       0x58 Src/communication.o
-                0x00000000080049b4                send_controls
+                0x00000000080049c4       0x58 Src/communication.o
+                0x00000000080049c4                send_controls
  .text.MX_DMA_Init
-                0x0000000008004a0c       0x44 Src/dma.o
-                0x0000000008004a0c                MX_DMA_Init
+                0x0000000008004a1c       0x44 Src/dma.o
+                0x0000000008004a1c                MX_DMA_Init
  .text.MX_GPIO_Init
-                0x0000000008004a50       0xc8 Src/gpio.o
-                0x0000000008004a50                MX_GPIO_Init
+                0x0000000008004a60       0xc8 Src/gpio.o
+                0x0000000008004a60                MX_GPIO_Init
  .text._Error_Handler
-                0x0000000008004b18        0x2 Src/main.o
-                0x0000000008004b18                _Error_Handler
- *fill*         0x0000000008004b1a        0x2 
+                0x0000000008004b28        0x2 Src/main.o
+                0x0000000008004b28                _Error_Handler
+ *fill*         0x0000000008004b2a        0x2 
  .text.SystemClock_Config
-                0x0000000008004b1c       0xa4 Src/main.o
-                0x0000000008004b1c                SystemClock_Config
- .text.main     0x0000000008004bc0       0x54 Src/main.o
-                0x0000000008004bc0                main
- .text.MOTOR_Init
+                0x0000000008004b2c       0xa4 Src/main.o
+                0x0000000008004b2c                SystemClock_Config
+ .text.main     0x0000000008004bd0       0x44 Src/main.o
+                0x0000000008004bd0                main
+ .text.MOTOR_init
                 0x0000000008004c14       0x58 Src/motor.o
-                0x0000000008004c14                MOTOR_Init
- .text.MOTOR_SetDirForward
+                0x0000000008004c14                MOTOR_init
+ .text.MOTOR_set_dir_forward
                 0x0000000008004c6c       0x14 Src/motor.o
-                0x0000000008004c6c                MOTOR_SetDirForward
- .text.MOTOR_SetDirReverse
+                0x0000000008004c6c                MOTOR_set_dir_forward
+ .text.MOTOR_set_dir_reverse
                 0x0000000008004c80       0x14 Src/motor.o
-                0x0000000008004c80                MOTOR_SetDirReverse
+                0x0000000008004c80                MOTOR_set_dir_reverse
  .text.MOTOR_brake_on
                 0x0000000008004c94       0x14 Src/motor.o
                 0x0000000008004c94                MOTOR_brake_on
@@ -6148,24 +6148,24 @@ LOAD /home/kamil/eclipse/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.
  .text.MOTOR_get_proces_variable
                 0x0000000008004d04        0xc Src/motor.o
                 0x0000000008004d04                MOTOR_get_proces_variable
- .text.MOTOR_SetSpeed
+ .text.MOTOR_set_speed
                 0x0000000008004d10       0x48 Src/motor.o
-                0x0000000008004d10                MOTOR_SetSpeed
- .text.MOTOR_GetEncoderValue
+                0x0000000008004d10                MOTOR_set_speed
+ .text.MOTOR_get_encoder_value
                 0x0000000008004d58       0x18 Src/motor.o
-                0x0000000008004d58                MOTOR_GetEncoderValue
- .text.MOTOR_GetCurrent
+                0x0000000008004d58                MOTOR_get_encoder_value
+ .text.MOTOR_get_current
                 0x0000000008004d70       0x28 Src/motor.o
-                0x0000000008004d70                MOTOR_GetCurrent
+                0x0000000008004d70                MOTOR_get_current
  .text.HAL_TIM_PeriodElapsedCallback
                 0x0000000008004d98       0x70 Src/motor.o
                 0x0000000008004d98                HAL_TIM_PeriodElapsedCallback
  .text.pid_init
                 0x0000000008004e08       0x18 Src/pid.o
                 0x0000000008004e08                pid_init
- .text.changeKp
+ .text.change_kp
                 0x0000000008004e20        0xc Src/pid.o
-                0x0000000008004e20                changeKp
+                0x0000000008004e20                change_kp
  .text.pid_calculate
                 0x0000000008004e2c       0x7c Src/pid.o
                 0x0000000008004e2c                pid_calculate
@@ -6547,13 +6547,12 @@ LOAD /home/kamil/eclipse/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.
                 0x00000000200003fc                txBuffer
                 0x0000000020000404                flagStatus
  *fill*         0x0000000020000405        0x3 
- COMMON         0x0000000020000408        0xf Src/motor.o
+ COMMON         0x0000000020000408       0x10 Src/motor.o
                 0x0000000020000408                speedRegister
-                0x000000002000040c                motor_pid_control
-                0x0000000020000410                set_point
-                0x0000000020000414                proces_variable
-                0x0000000020000416                set_direction
- *fill*         0x0000000020000417        0x1 
+                0x000000002000040c                motorPidControl
+                0x0000000020000410                procesVariable
+                0x0000000020000412                setDirection
+                0x0000000020000414                setPoint
  COMMON         0x0000000020000418       0xc0 Src/tim.o
                 0x0000000020000418                htim4
                 0x0000000020000458                htim1
@@ -6681,7 +6680,7 @@ LOAD /home/kamil/eclipse/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.
                 0x000000000000079f       0x1d /home/kamil/eclipse/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7-m/crtn.o
 OUTPUT(motee_v3.elf elf32-littlearm)
 
-.debug_info     0x0000000000000000    0x2932e
+.debug_info     0x0000000000000000    0x293a3
  .debug_info    0x0000000000000000      0xee6 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
  .debug_info    0x0000000000000ee6     0x161b Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.o
  .debug_info    0x0000000000002501     0x147b Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
@@ -6700,22 +6699,22 @@ OUTPUT(motee_v3.elf elf32-littlearm)
  .debug_info    0x0000000000014ee1     0x1666 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.o
  .debug_info    0x0000000000016547      0xfd9 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.o
  .debug_info    0x0000000000017520     0x107d Src/adc.o
- .debug_info    0x000000000001859d     0x1a48 Src/communication.o
- .debug_info    0x0000000000019fe5      0xbca Src/dma.o
- .debug_info    0x000000000001abaf      0xc30 Src/gpio.o
- .debug_info    0x000000000001b7df     0x1c39 Src/main.o
- .debug_info    0x000000000001d418     0x155b Src/motor.o
- .debug_info    0x000000000001e973      0x184 Src/pid.o
- .debug_info    0x000000000001eaf7      0xcbb Src/stm32f1xx_hal_msp.o
- .debug_info    0x000000000001f7b2     0x15c0 Src/stm32f1xx_it.o
- .debug_info    0x0000000000020d72      0xc1b Src/system_stm32f1xx.o
- .debug_info    0x000000000002198d     0x1938 Src/tim.o
- .debug_info    0x00000000000232c5     0x127b Src/usart.o
- .debug_info    0x0000000000024540      0xe91 Src/usb_device.o
- .debug_info    0x00000000000253d1     0x10d6 Src/usbd_cdc_if.o
- .debug_info    0x00000000000264a7     0x20b8 Src/usbd_conf.o
- .debug_info    0x000000000002855f      0xd59 Src/usbd_desc.o
- .debug_info    0x00000000000292b8       0x76 startup/startup_stm32f103xb.o
+ .debug_info    0x000000000001859d     0x1b00 Src/communication.o
+ .debug_info    0x000000000001a09d      0xbca Src/dma.o
+ .debug_info    0x000000000001ac67      0xc30 Src/gpio.o
+ .debug_info    0x000000000001b897     0x1bf6 Src/main.o
+ .debug_info    0x000000000001d48d     0x155b Src/motor.o
+ .debug_info    0x000000000001e9e8      0x184 Src/pid.o
+ .debug_info    0x000000000001eb6c      0xcbb Src/stm32f1xx_hal_msp.o
+ .debug_info    0x000000000001f827     0x15c0 Src/stm32f1xx_it.o
+ .debug_info    0x0000000000020de7      0xc1b Src/system_stm32f1xx.o
+ .debug_info    0x0000000000021a02     0x1938 Src/tim.o
+ .debug_info    0x000000000002333a     0x127b Src/usart.o
+ .debug_info    0x00000000000245b5      0xe91 Src/usb_device.o
+ .debug_info    0x0000000000025446     0x10d6 Src/usbd_cdc_if.o
+ .debug_info    0x000000000002651c     0x20b8 Src/usbd_conf.o
+ .debug_info    0x00000000000285d4      0xd59 Src/usbd_desc.o
+ .debug_info    0x000000000002932d       0x76 startup/startup_stm32f103xb.o
 
 .debug_abbrev   0x0000000000000000     0x569b
  .debug_abbrev  0x0000000000000000      0x2e5 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
@@ -6996,7 +6995,7 @@ OUTPUT(motee_v3.elf elf32-littlearm)
  .debug_macro   0x000000000001a3de      0x3d4 Src/usbd_conf.o
  .debug_macro   0x000000000001a7b2      0x3f5 Src/usbd_desc.o
 
-.debug_line     0x0000000000000000    0x1452b
+.debug_line     0x0000000000000000    0x14528
  .debug_line    0x0000000000000000      0x8eb Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
  .debug_line    0x00000000000008eb      0xcaa Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.o
  .debug_line    0x0000000000001595      0x92d Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
@@ -7015,89 +7014,89 @@ OUTPUT(motee_v3.elf elf32-littlearm)
  .debug_line    0x000000000000ae79      0xa8c Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.o
  .debug_line    0x000000000000b905      0x902 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.o
  .debug_line    0x000000000000c207      0x7b9 Src/adc.o
- .debug_line    0x000000000000c9c0      0x9fd Src/communication.o
- .debug_line    0x000000000000d3bd      0x775 Src/dma.o
- .debug_line    0x000000000000db32      0x789 Src/gpio.o
- .debug_line    0x000000000000e2bb      0x993 Src/main.o
- .debug_line    0x000000000000ec4e      0x8fb Src/motor.o
- .debug_line    0x000000000000f549       0xc4 Src/pid.o
- .debug_line    0x000000000000f60d      0x77e Src/stm32f1xx_hal_msp.o
- .debug_line    0x000000000000fd8b      0x88b Src/stm32f1xx_it.o
- .debug_line    0x0000000000010616      0x7b3 Src/system_stm32f1xx.o
- .debug_line    0x0000000000010dc9      0x884 Src/tim.o
- .debug_line    0x000000000001164d      0x7e2 Src/usart.o
- .debug_line    0x0000000000011e2f      0x901 Src/usb_device.o
- .debug_line    0x0000000000012730      0x932 Src/usbd_cdc_if.o
- .debug_line    0x0000000000013062      0xb61 Src/usbd_conf.o
- .debug_line    0x0000000000013bc3      0x8eb Src/usbd_desc.o
- .debug_line    0x00000000000144ae       0x7d startup/startup_stm32f103xb.o
+ .debug_line    0x000000000000c9c0      0x9fe Src/communication.o
+ .debug_line    0x000000000000d3be      0x775 Src/dma.o
+ .debug_line    0x000000000000db33      0x789 Src/gpio.o
+ .debug_line    0x000000000000e2bc      0x98f Src/main.o
+ .debug_line    0x000000000000ec4b      0x8fb Src/motor.o
+ .debug_line    0x000000000000f546       0xc4 Src/pid.o
+ .debug_line    0x000000000000f60a      0x77e Src/stm32f1xx_hal_msp.o
+ .debug_line    0x000000000000fd88      0x88b Src/stm32f1xx_it.o
+ .debug_line    0x0000000000010613      0x7b3 Src/system_stm32f1xx.o
+ .debug_line    0x0000000000010dc6      0x884 Src/tim.o
+ .debug_line    0x000000000001164a      0x7e2 Src/usart.o
+ .debug_line    0x0000000000011e2c      0x901 Src/usb_device.o
+ .debug_line    0x000000000001272d      0x932 Src/usbd_cdc_if.o
+ .debug_line    0x000000000001305f      0xb61 Src/usbd_conf.o
+ .debug_line    0x0000000000013bc0      0x8eb Src/usbd_desc.o
+ .debug_line    0x00000000000144ab       0x7d startup/startup_stm32f103xb.o
 
-.debug_str      0x0000000000000000    0x7aedf
+.debug_str      0x0000000000000000    0x7af02
  .debug_str     0x0000000000000000    0x75628 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
                                       0x759f4 (size before relaxing)
- .debug_str     0x0000000000075628      0x6af Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.o
+ .debug_str     0x0000000000075628      0x6a5 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.o
                                       0x75a51 (size before relaxing)
- .debug_str     0x0000000000075cd7      0x2e1 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
+ .debug_str     0x0000000000075ccd      0x2e1 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
                                       0x759ff (size before relaxing)
- .debug_str     0x0000000000075fb8      0x220 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.o
+ .debug_str     0x0000000000075fae      0x220 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.o
                                       0x75763 (size before relaxing)
- .debug_str     0x00000000000761d8      0x39e Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
+ .debug_str     0x00000000000761ce      0x39e Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
                                       0x75746 (size before relaxing)
- .debug_str     0x0000000000076576      0x7d5 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pcd.o
+ .debug_str     0x000000000007656c      0x7d5 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pcd.o
                                       0x75bb4 (size before relaxing)
- .debug_str     0x0000000000076d4b       0x57 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pcd_ex.o
+ .debug_str     0x0000000000076d41       0x57 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pcd_ex.o
                                       0x75691 (size before relaxing)
- .debug_str     0x0000000000076da2      0x368 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
+ .debug_str     0x0000000000076d98      0x368 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
                                       0x7579b (size before relaxing)
- .debug_str     0x000000000007710a      0x110 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.o
+ .debug_str     0x0000000000077100      0x110 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.o
                                       0x75527 (size before relaxing)
- .debug_str     0x000000000007721a      0xf05 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
+ .debug_str     0x0000000000077210      0xf05 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
                                       0x7649b (size before relaxing)
- .debug_str     0x000000000007811f      0x4f1 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
+ .debug_str     0x0000000000078115      0x4f1 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
                                       0x75d3d (size before relaxing)
- .debug_str     0x0000000000078610      0x6d1 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o
+ .debug_str     0x0000000000078606      0x6d1 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o
                                       0x75cb4 (size before relaxing)
- .debug_str     0x0000000000078ce1      0x14f Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_usb.o
+ .debug_str     0x0000000000078cd7      0x14f Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_usb.o
                                       0x75864 (size before relaxing)
- .debug_str     0x0000000000078e30     0x1296 Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.o
+ .debug_str     0x0000000000078e26     0x128e Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.o
                                       0x766da (size before relaxing)
- .debug_str     0x000000000007a0c6      0x294 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.o
+ .debug_str     0x000000000007a0b4      0x294 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.o
                                       0x7639b (size before relaxing)
- .debug_str     0x000000000007a35a      0x12e Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.o
+ .debug_str     0x000000000007a348      0x12e Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.o
                                       0x762b5 (size before relaxing)
- .debug_str     0x000000000007a488       0x51 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.o
+ .debug_str     0x000000000007a476       0x51 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.o
                                       0x761e2 (size before relaxing)
- .debug_str     0x000000000007a4d9       0x5c Src/adc.o
+ .debug_str     0x000000000007a4c7       0x5c Src/adc.o
                                       0x75770 (size before relaxing)
- .debug_str     0x000000000007a535      0x29a Src/communication.o
-                                      0x76cc2 (size before relaxing)
- .debug_str     0x000000000007a7cf        0xd Src/dma.o
+ .debug_str     0x000000000007a523      0x29e Src/communication.o
+                                      0x76d0b (size before relaxing)
+ .debug_str     0x000000000007a7c1        0xd Src/dma.o
                                       0x7564a (size before relaxing)
- .debug_str     0x000000000007a7dc       0x1b Src/gpio.o
+ .debug_str     0x000000000007a7ce       0x1b Src/gpio.o
                                       0x753e8 (size before relaxing)
- .debug_str     0x000000000007a7f7       0x31 Src/main.o
-                                      0x770a4 (size before relaxing)
- .debug_str     0x000000000007a828      0x10f Src/motor.o
-                                      0x75b22 (size before relaxing)
- .debug_str     0x000000000007a937       0x62 Src/pid.o
-                                       0x2605 (size before relaxing)
- .debug_str     0x000000000007a999       0x1b Src/stm32f1xx_hal_msp.o
+ .debug_str     0x000000000007a7e9       0x31 Src/main.o
+                                      0x77076 (size before relaxing)
+ .debug_str     0x000000000007a81a      0x139 Src/motor.o
+                                      0x75b25 (size before relaxing)
+ .debug_str     0x000000000007a953       0x69 Src/pid.o
+                                       0x260d (size before relaxing)
+ .debug_str     0x000000000007a9bc       0x1b Src/stm32f1xx_hal_msp.o
                                       0x75687 (size before relaxing)
- .debug_str     0x000000000007a9b4      0x146 Src/stm32f1xx_it.o
+ .debug_str     0x000000000007a9d7      0x146 Src/stm32f1xx_it.o
                                       0x75cf5 (size before relaxing)
- .debug_str     0x000000000007aafa       0x69 Src/system_stm32f1xx.o
+ .debug_str     0x000000000007ab1d       0x69 Src/system_stm32f1xx.o
                                       0x753f1 (size before relaxing)
- .debug_str     0x000000000007ab63       0x56 Src/tim.o
+ .debug_str     0x000000000007ab86       0x56 Src/tim.o
                                       0x75e92 (size before relaxing)
- .debug_str     0x000000000007abb9       0x1a Src/usart.o
+ .debug_str     0x000000000007abdc       0x1a Src/usart.o
                                       0x75b17 (size before relaxing)
- .debug_str     0x000000000007abd3       0x14 Src/usb_device.o
+ .debug_str     0x000000000007abf6       0x14 Src/usb_device.o
                                       0x7644d (size before relaxing)
- .debug_str     0x000000000007abe7       0x91 Src/usbd_cdc_if.o
+ .debug_str     0x000000000007ac0a       0x91 Src/usbd_cdc_if.o
                                       0x7655f (size before relaxing)
- .debug_str     0x000000000007ac78       0x46 Src/usbd_conf.o
+ .debug_str     0x000000000007ac9b       0x46 Src/usbd_conf.o
                                       0x76f1b (size before relaxing)
- .debug_str     0x000000000007acbe      0x221 Src/usbd_desc.o
+ .debug_str     0x000000000007ace1      0x221 Src/usbd_desc.o
                                       0x7607b (size before relaxing)
 
 .comment        0x0000000000000000       0x7f

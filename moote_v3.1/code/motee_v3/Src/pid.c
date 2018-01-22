@@ -8,51 +8,51 @@ struct pid_params
 	float ki;
 	float kd;
 	float err;
-	float err_sum;
-	float err_last;
+	float errSum;
+	float errLast;
 };
 
-static struct pid_params pid_params;
+static struct pid_params pidParams;
 
 void pid_init(float kp, float ki, float kd)
 {
-	pid_params.kp = kp;
-	pid_params.ki = ki;
-	pid_params.kd = kd;
-	pid_params.err = 0;
-	pid_params.err_sum = 0;
-	pid_params.err_last = 0;
+	pidParams.kp = kp;
+	pidParams.ki = ki;
+	pidParams.kd = kd;
+	pidParams.err = 0;
+	pidParams.errSum = 0;
+	pidParams.errLast = 0;
 }
 
-void changeKp(float kp){
-	pid_params.kp = kp;
+void change_kp(float kp){
+	pidParams.kp = kp;
 }
 
-void changeKd(float kd){
-	pid_params.kd = kd;
+void change_kd(float kd){
+	pidParams.kd = kd;
 }
 
 void changeKi(float ki){
-	pid_params.ki = ki;
+	pidParams.ki = ki;
 }
 
-float pid_calculate(float set_val, float read_val)
+float pid_calculate(float setVal, float readVal)
 {
 	float err_d, u;
 
-	pid_params.err = set_val - read_val;
-	pid_params.err_sum += pid_params.err;
+	pidParams.err = setVal - readVal;
+	pidParams.errSum += pidParams.err;
 
-	if (pid_params.err_sum > ERR_SUM_MAX) {
-		pid_params.err_sum = ERR_SUM_MAX;
-	} else if (pid_params.err_sum < -ERR_SUM_MAX) {
-		pid_params.err_sum = -ERR_SUM_MAX;
+	if (pidParams.errSum > ERR_SUM_MAX) {
+		pidParams.errSum = ERR_SUM_MAX;
+	} else if (pidParams.errSum < -ERR_SUM_MAX) {
+		pidParams.errSum = -ERR_SUM_MAX;
 	}
 
-	err_d = pid_params.err_last - pid_params.err;
-	u = pid_params.kp * pid_params.err + pid_params.ki * pid_params.err_sum + pid_params.kd * err_d;
+	err_d = pidParams.errLast - pidParams.err;
+	u = pidParams.kp * pidParams.err + pidParams.ki * pidParams.errSum + pidParams.kd * err_d;
 
-	pid_params.err_last = pid_params.err;
+	pidParams.errLast = pidParams.err;
 
 	return u;
 }
