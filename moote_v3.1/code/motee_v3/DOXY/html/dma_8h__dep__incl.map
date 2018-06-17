@@ -1,0 +1,7 @@
+<map id="Inc/dma.h" name="Inc/dma.h">
+<area shape="rect" id="node2" href="$communication_8h.html" title="this header file contains prototypes of functions for handling communication protocols ..." alt="" coords="76,80,219,107"/>
+<area shape="rect" id="node5" href="$dma_8c.html" title="Src/dma.c" alt="" coords="242,80,325,107"/>
+<area shape="rect" id="node6" href="$usart_8c.html" title="Src/usart.c" alt="" coords="349,80,436,107"/>
+<area shape="rect" id="node3" href="$communication_8c.html" title="this file contains functions for handling communication protocols " alt="" coords="5,155,151,181"/>
+<area shape="rect" id="node4" href="$main_8c.html" title="Src/main.c" alt="" coords="175,155,261,181"/>
+</map>

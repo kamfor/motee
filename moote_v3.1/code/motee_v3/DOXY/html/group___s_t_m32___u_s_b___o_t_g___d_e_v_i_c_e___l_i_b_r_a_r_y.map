@@ -1,0 +1,6 @@
+<map id="STM32_USB_OTG_DEVICE_LIBRARY" name="STM32_USB_OTG_DEVICE_LIBRARY">
+<area shape="rect" id="node1" href="$group___u_s_b___d_e_s_c.html" title="general defines for the usb device library file " alt="" coords="256,5,351,32"/>
+<area shape="rect" id="node2" href="$group___u_s_b_d___d_e_s_c.html" title="USBD descriptors module. " alt="" coords="251,56,356,83"/>
+<area shape="rect" id="node3" href="$group___u_s_b_d___c_d_c___i_f.html" title="header " alt="" coords="245,107,361,133"/>
+<area shape="rect" id="node4" href="$group___u_s_b_d___c_d_c.html" title="usbd core module " alt="" coords="255,157,352,184"/>
+</map>

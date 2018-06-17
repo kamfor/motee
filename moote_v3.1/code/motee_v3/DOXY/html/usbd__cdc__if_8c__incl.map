@@ -1,0 +1,30 @@
+<map id="Src/usbd_cdc_if.c" name="Src/usbd_cdc_if.c">
+<area shape="rect" id="node2" href="$usbd__cdc__if_8h.html" title=": Header for usbd_cdc_if file. " alt="" coords="2013,80,2115,107"/>
+<area shape="rect" id="node3" href="$usbd__cdc_8h.html" title="header file for the usbd_cdc.c file. " alt="" coords="2019,155,2109,181"/>
+<area shape="rect" id="node4" href="$usbd__ioreq_8h.html" title="Header file for the usbd_ioreq.c file. " alt="" coords="2016,229,2112,256"/>
+<area shape="rect" id="node5" href="$usbd__def_8h.html" title="General defines for the usb device library. " alt="" coords="2005,453,2091,480"/>
+<area shape="rect" id="node31" href="$usbd__core_8h.html" title="Header file for usbd_core.c file. " alt="" coords="2017,304,2111,331"/>
+<area shape="rect" id="node6" href="$usbd__conf_8h.html" title=": Header for usbd_conf file. " alt="" coords="2001,528,2095,555"/>
+<area shape="rect" id="node10" href="$stm32f1xx_8h.html" title="CMSIS STM32F1xx Device Peripheral Access Layer Header File. " alt="" coords="1193,976,1287,1003"/>
+<area shape="rect" id="node11" href="$stm32f1xx__hal_8h.html" title="This file contains all the functions prototypes for the HAL module driver. " alt="" coords="1587,603,1706,629"/>
+<area shape="rect" id="node12" href="$stm32f1xx__hal__conf_8h.html" title="HAL configuration file. " alt="" coords="1287,677,1438,704"/>
+<area shape="rect" id="node13" href="$main_8h.html" title="main.h" alt="" coords="1676,752,1737,779"/>
+<area shape="rect" id="node14" href="$stm32f1xx__hal__rcc_8h.html" title="Header file of RCC HAL module. " alt="" coords="105,752,247,779"/>
+<area shape="rect" id="node17" href="$stm32f1xx__hal__gpio_8h.html" title="Header file of GPIO HAL module. " alt="" coords="344,752,493,779"/>
+<area shape="rect" id="node19" href="$stm32f1xx__hal__dma_8h.html" title="Header file of DMA HAL module. " alt="" coords="589,752,739,779"/>
+<area shape="rect" id="node21" href="$stm32f1xx__hal__cortex_8h.html" title="Header file of CORTEX HAL module. " alt="" coords="774,827,935,853"/>
+<area shape="rect" id="node22" href="$stm32f1xx__hal__adc_8h.html" title="Header file containing functions prototypes of ADC HAL library. " alt="" coords="1021,752,1168,779"/>
+<area shape="rect" id="node24" href="$stm32f1xx__hal__flash_8h.html" title="Header file of Flash HAL module. " alt="" coords="1229,752,1382,779"/>
+<area shape="rect" id="node26" href="$stm32f1xx__hal__pwr_8h.html" title="Header file of PWR HAL module. " alt="" coords="1453,827,1600,853"/>
+<area shape="rect" id="node27" href="$stm32f1xx__hal__tim_8h.html" title="Header file of TIM HAL module. " alt="" coords="1458,752,1601,779"/>
+<area shape="rect" id="node29" href="$stm32f1xx__hal__uart_8h.html" title="Header file of UART HAL module. " alt="" coords="1864,827,2011,853"/>
+<area shape="rect" id="node30" href="$stm32f1xx__hal__pcd_8h.html" title="Header file of PCD HAL module. " alt="" coords="1761,752,1908,779"/>
+<area shape="rect" id="node15" href="$stm32f1xx__hal__def_8h.html" title="This file contains HAL common defines, enumeration, macros and structures definitions. " alt="" coords="902,901,1045,928"/>
+<area shape="rect" id="node16" href="$stm32f1xx__hal__rcc__ex_8h.html" title="Header file of RCC HAL Extension module. " alt="" coords="94,827,258,853"/>
+<area shape="rect" id="node18" href="$stm32f1xx__hal__gpio__ex_8h.html" title="Header file of GPIO HAL Extension module. " alt="" coords="333,827,504,853"/>
+<area shape="rect" id="node20" href="$stm32f1xx__hal__dma__ex_8h.html" title="Header file of DMA HAL extension module. " alt="" coords="579,827,749,853"/>
+<area shape="rect" id="node23" href="$stm32f1xx__hal__adc__ex_8h.html" title="Header file of ADC HAL extension module. " alt="" coords="1011,827,1178,853"/>
+<area shape="rect" id="node25" href="$stm32f1xx__hal__flash__ex_8h.html" title="Header file of Flash HAL Extended module. " alt="" coords="1254,827,1429,853"/>
+<area shape="rect" id="node28" href="$stm32f1xx__hal__tim__ex_8h.html" title="Header file of TIM HAL Extension module. " alt="" coords="1675,827,1839,853"/>
+<area shape="rect" id="node32" href="$usbd__ctlreq_8h.html" title="usbd_ctlreq.h" alt="" coords="2042,379,2142,405"/>
+</map>

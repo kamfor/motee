@@ -1,0 +1,21 @@
+<map id="Inc/usbd_conf.h" name="Inc/usbd_conf.h">
+<area shape="rect" id="node2" href="$usbd__core_8h.html" title="Header file for usbd_core.c file. " alt="" coords="468,288,651,344"/>
+<area shape="rect" id="node16" href="$usbd__desc_8c.html" title=": This file implements the USB Device descriptors " alt="" coords="90,407,210,433"/>
+<area shape="rect" id="node17" href="$usbd__def_8h.html" title="General defines for the usb device library. " alt="" coords="572,80,755,136"/>
+<area shape="rect" id="node3" href="$usbd__ioreq_8h.html" title="Header file for the usbd_ioreq.c file. " alt="" coords="597,392,780,448"/>
+<area shape="rect" id="node9" href="$usb__device_8c.html" title="Src/usb_device.c" alt="" coords="259,704,382,731"/>
+<area shape="rect" id="node12" href="$usbd__conf_8c.html" title=": This file implements the board support package for the USB device library " alt="" coords="533,615,650,641"/>
+<area shape="rect" id="node15" href="$usbd__core_8c.html" title="This file provides all the USBD core functions. " alt="" coords="285,392,468,448"/>
+<area shape="rect" id="node4" href="$usbd__cdc_8h.html" title="header file for the usbd_cdc.c file. " alt="" coords="333,496,522,552"/>
+<area shape="rect" id="node13" href="$usbd__ctlreq_8c.html" title="Middlewares/ST/STM32\l_USB_Device_Library/Core\l/Src/usbd_ctlreq.c" alt="" coords="804,496,987,552"/>
+<area shape="rect" id="node14" href="$usbd__ioreq_8c.html" title="This file provides the IO requests APIs for control endpoints. " alt="" coords="597,496,780,552"/>
+<area shape="rect" id="node5" href="$usbd__cdc__if_8h.html" title=": Header for usbd_cdc_if file. " alt="" coords="383,615,509,641"/>
+<area shape="rect" id="node11" href="$usbd__cdc_8c.html" title="This file provides the high layer firmware functions to manage the following functionalities of the U..." alt="" coords="69,600,258,656"/>
+<area shape="rect" id="node6" href="$communication_8h.html" title="this header file contains prototypes of functions for handling communication protocols ..." alt="" coords="623,704,765,731"/>
+<area shape="rect" id="node10" href="$usbd__cdc__if_8c.html" title=": " alt="" coords="407,704,533,731"/>
+<area shape="rect" id="node7" href="$communication_8c.html" title="this file contains functions for handling communication protocols " alt="" coords="552,779,697,805"/>
+<area shape="rect" id="node8" href="$main_8c.html" title="Src/main.c" alt="" coords="722,779,807,805"/>
+<area shape="rect" id="node18" href="$usb__device_8h.html" title="Inc/usb_device.h" alt="" coords="675,615,796,641"/>
+<area shape="rect" id="node19" href="$usbd__desc_8h.html" title=": Header for usbd_desc file. " alt="" coords="5,303,124,329"/>
+<area shape="rect" id="node20" href="$usbd__ctlreq_8h.html" title="Middlewares/ST/STM32\l_USB_Device_Library/Core\l/Inc/usbd_ctlreq.h" alt="" coords="623,184,805,240"/>
+</map>

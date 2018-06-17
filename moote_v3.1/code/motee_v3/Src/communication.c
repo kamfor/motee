@@ -1,9 +1,8 @@
-/*
- * communication.c
- *
- *  Created on: Jan 8, 2018
- *      Author: kamil
- */
+/**
+*@file communication.c
+*@brief this file contains functions for handling communication protocols
+*@author Kamil Foryszewski
+*/
 
 #include "communication.h"
 
@@ -18,7 +17,6 @@ uint8_t flagStatus;
 uint16_t actCurrent=0;
 uint16_t actSpeed=0;
 uint16_t param;
-
 
 void sendHello(){
 	HAL_UART_Transmit_DMA(&huart1, "HELLO\r\n", 7);

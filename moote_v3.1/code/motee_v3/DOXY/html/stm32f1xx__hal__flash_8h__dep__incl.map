@@ -1,0 +1,51 @@
+<map id="Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h" name="Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h">
+<area shape="rect" id="node2" href="$stm32f1xx__hal__conf_8h.html" title="HAL configuration file. " alt="" coords="3059,109,3231,136"/>
+<area shape="rect" id="node3" href="$stm32f1xx__hal_8h.html" title="This file contains all the functions prototypes for the HAL module driver. " alt="" coords="3051,184,3238,225"/>
+<area shape="rect" id="node4" href="$stm32f1xx__hal_8c.html" title="HAL module driver. This is the common part of the HAL initialization. " alt="" coords="5,281,193,322"/>
+<area shape="rect" id="node5" href="$stm32f1xx__hal__adc_8c.html" title="This file provides firmware functions to manage the following functionalities of the Analog to Digita..." alt="" coords="217,273,389,329"/>
+<area shape="rect" id="node6" href="$stm32f1xx__hal__adc__ex_8c.html" title="This file provides firmware functions to manage the following functionalities of the Analog to Digita..." alt="" coords="413,273,585,329"/>
+<area shape="rect" id="node7" href="$stm32f1xx__hal__cortex_8c.html" title="CORTEX HAL module driver. This file provides firmware functions to manage the following functionaliti..." alt="" coords="609,273,781,329"/>
+<area shape="rect" id="node8" href="$stm32f1xx__hal__dma_8c.html" title="DMA HAL module driver. This file provides firmware functions to manage the following functionalities ..." alt="" coords="805,273,977,329"/>
+<area shape="rect" id="node9" href="$stm32f1xx__hal__flash_8c.html" title="FLASH HAL module driver. This file provides firmware functions to manage the following functionalitie..." alt="" coords="1001,273,1173,329"/>
+<area shape="rect" id="node10" href="$stm32f1xx__hal__flash__ex_8c.html" title="Extended FLASH HAL module driver. " alt="" coords="1197,273,1369,329"/>
+<area shape="rect" id="node11" href="$stm32f1xx__hal__gpio_8c.html" title="GPIO HAL module driver. This file provides firmware functions to manage the following functionalities..." alt="" coords="1393,273,1565,329"/>
+<area shape="rect" id="node12" href="$stm32f1xx__hal__gpio__ex_8c.html" title="GPIO Extension HAL module driver. This file provides firmware functions to manage the following funct..." alt="" coords="1589,273,1761,329"/>
+<area shape="rect" id="node13" href="$stm32f1xx__hal__pcd_8c.html" title="PCD HAL module driver. This file provides firmware functions to manage the following functionalities ..." alt="" coords="1785,273,1957,329"/>
+<area shape="rect" id="node14" href="$stm32f1xx__hal__pcd__ex_8c.html" title="Extended PCD HAL module driver. This file provides firmware functions to manage the following functio..." alt="" coords="1981,273,2153,329"/>
+<area shape="rect" id="node15" href="$stm32f1xx__hal__pwr_8c.html" title="PWR HAL module driver. " alt="" coords="2177,273,2349,329"/>
+<area shape="rect" id="node16" href="$stm32f1xx__hal__rcc_8c.html" title="RCC HAL module driver. This file provides firmware functions to manage the following functionalities ..." alt="" coords="2373,273,2545,329"/>
+<area shape="rect" id="node17" href="$stm32f1xx__hal__rcc__ex_8c.html" title="Extended RCC HAL module driver. This file provides firmware functions to manage the following functio..." alt="" coords="2569,273,2741,329"/>
+<area shape="rect" id="node18" href="$stm32f1xx__hal__tim_8c.html" title="TIM HAL module driver This file provides firmware functions to manage the following functionalities o..." alt="" coords="2765,273,2937,329"/>
+<area shape="rect" id="node19" href="$stm32f1xx__hal__tim__ex_8c.html" title="TIM HAL module driver. This file provides firmware functions to manage the following functionalities ..." alt="" coords="2961,273,3133,329"/>
+<area shape="rect" id="node20" href="$stm32f1xx__hal__uart_8c.html" title="UART HAL module driver. This file provides firmware functions to manage the following functionalities..." alt="" coords="3157,273,3329,329"/>
+<area shape="rect" id="node21" href="$stm32f1xx__ll__usb_8c.html" title="USB Low Layer HAL module driver. " alt="" coords="3353,273,3525,329"/>
+<area shape="rect" id="node22" href="$adc_8h.html" title="Inc/adc.h" alt="" coords="3652,288,3728,315"/>
+<area shape="rect" id="node23" href="$motor_8h.html" title="this header file contains prototypes of functions for interface with dc motor driver and endcoder ..." alt="" coords="3537,392,3625,419"/>
+<area shape="rect" id="node24" href="$communication_8h.html" title="this header file contains prototypes of functions for handling communication protocols ..." alt="" coords="4032,600,4175,627"/>
+<area shape="rect" id="node26" href="$main_8c.html" title="Src/main.c" alt="" coords="3679,704,3765,731"/>
+<area shape="rect" id="node29" href="$usb__device_8h.html" title="Inc/usb_device.h" alt="" coords="4380,496,4501,523"/>
+<area shape="rect" id="node31" href="$usart_8h.html" title="Inc/usart.h" alt="" coords="3980,288,4064,315"/>
+<area shape="rect" id="node33" href="$dma_8h.html" title="Inc/dma.h" alt="" coords="4117,288,4197,315"/>
+<area shape="rect" id="node35" href="$tim_8h.html" title="Inc/tim.h" alt="" coords="3752,288,3825,315"/>
+<area shape="rect" id="node37" href="$gpio_8h.html" title="Inc/gpio.h" alt="" coords="3849,288,3928,315"/>
+<area shape="rect" id="node39" href="$stm32f1xx__it_8h.html" title="This file contains the headers of the interrupt handlers. " alt="" coords="4430,288,4561,315"/>
+<area shape="rect" id="node40" href="$stm32f1xx__it_8c.html" title="Interrupt Service Routines. " alt="" coords="4431,392,4563,419"/>
+<area shape="rect" id="node41" href="$usbd__conf_8h.html" title=": Header for usbd_conf file. " alt="" coords="4673,288,4787,315"/>
+<area shape="rect" id="node45" href="$usbd__conf_8c.html" title=": This file implements the board support package for the USB device library " alt="" coords="5085,704,5202,731"/>
+<area shape="rect" id="node50" href="$stm32f1xx__hal__msp_8c.html" title="Src/stm32f1xx_hal_msp.c" alt="" coords="5167,288,5341,315"/>
+<area shape="rect" id="node28" href="$adc_8c.html" title="Src/adc.c" alt="" coords="3649,392,3728,419"/>
+<area shape="rect" id="node27" href="$motor_8c.html" title="this file contains functions for steering dc motor and getting value from encoder ..." alt="" coords="3618,496,3709,523"/>
+<area shape="rect" id="node25" href="$communication_8c.html" title="this file contains functions for handling communication protocols " alt="" coords="4031,704,4176,731"/>
+<area shape="rect" id="node30" href="$usb__device_8c.html" title="Src/usb_device.c" alt="" coords="4379,704,4502,731"/>
+<area shape="rect" id="node32" href="$usart_8c.html" title="Src/usart.c" alt="" coords="4060,392,4147,419"/>
+<area shape="rect" id="node34" href="$dma_8c.html" title="Src/dma.c" alt="" coords="4222,392,4305,419"/>
+<area shape="rect" id="node36" href="$tim_8c.html" title="Src/tim.c" alt="" coords="3753,392,3827,419"/>
+<area shape="rect" id="node38" href="$gpio_8c.html" title="Src/gpio.c" alt="" coords="3903,392,3984,419"/>
+<area shape="rect" id="node42" href="$usbd__core_8h.html" title="Header file for usbd_core.c file. " alt="" coords="4756,585,4939,641"/>
+<area shape="rect" id="node46" href="$usbd__desc_8c.html" title=": This file implements the USB Device descriptors " alt="" coords="4526,704,4646,731"/>
+<area shape="rect" id="node47" href="$usbd__def_8h.html" title="General defines for the usb device library. " alt="" coords="4639,377,4821,433"/>
+<area shape="rect" id="node43" href="$usbd__ioreq_8h.html" title="Header file for the usbd_ioreq.c file. " alt="" coords="4877,689,5060,745"/>
+<area shape="rect" id="node44" href="$usbd__core_8c.html" title="This file provides all the USBD core functions. " alt="" coords="4671,689,4853,745"/>
+<area shape="rect" id="node48" href="$usbd__desc_8h.html" title=": Header for usbd_desc file. " alt="" coords="4613,600,4732,627"/>
+<area shape="rect" id="node49" href="$usbd__ctlreq_8h.html" title="Middlewares/ST/STM32\l_USB_Device_Library/Core\l/Inc/usbd_ctlreq.h" alt="" coords="4756,481,4939,537"/>
+</map>

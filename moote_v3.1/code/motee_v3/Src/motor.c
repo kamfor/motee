@@ -1,8 +1,8 @@
 /**
-  ******************************************************************************
-  * File Name          : motor.c
-  * Description        : This file provides code for the controlling DC motor..
-  *****************************************************************************/
+*@file motor.c
+*@brief this file contains functions for steering dc motor and getting value from encoder
+*@author Kamil Foryszewski
+*/
 
 #include "motor.h"
 

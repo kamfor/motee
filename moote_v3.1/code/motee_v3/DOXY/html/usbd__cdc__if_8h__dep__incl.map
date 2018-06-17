@@ -1,0 +1,7 @@
+<map id="Inc/usbd_cdc_if.h" name="Inc/usbd_cdc_if.h">
+<area shape="rect" id="node2" href="$communication_8h.html" title="this header file contains prototypes of functions for handling communication protocols ..." alt="" coords="76,80,219,107"/>
+<area shape="rect" id="node5" href="$usb__device_8c.html" title="Src/usb_device.c" alt="" coords="243,80,366,107"/>
+<area shape="rect" id="node6" href="$usbd__cdc__if_8c.html" title=": " alt="" coords="391,80,517,107"/>
+<area shape="rect" id="node3" href="$communication_8c.html" title="this file contains functions for handling communication protocols " alt="" coords="5,155,151,181"/>
+<area shape="rect" id="node4" href="$main_8c.html" title="Src/main.c" alt="" coords="175,155,261,181"/>
+</map>

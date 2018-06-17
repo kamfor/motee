@@ -1,3 +1,9 @@
+/**
+*@file pid.c
+*@brief this file contains functions for calculating PID algorithm
+*@author Kamil Foryszewski
+*/
+
 #include "pid.h"
 
 #define ERR_SUM_MAX		500

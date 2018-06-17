@@ -1,0 +1,9 @@
+<map id="PWR" name="PWR">
+<area shape="rect" id="node1" href="$group___p_w_r___exported___functions.html" title="PWR Exported Functions" alt="" coords="326,5,497,32"/>
+<area shape="rect" id="node2" href="$group___p_w_r___exported___types.html" title="PWR Exported Types" alt="" coords="336,56,487,83"/>
+<area shape="rect" id="node3" href="$group___p_w_r___private___constants.html" title="PWR_Private_Constants" alt="" coords="327,107,496,133"/>
+<area shape="rect" id="node4" href="$group___p_w_r___private___macros.html" title="PWR Private Macros" alt="" coords="338,157,485,184"/>
+<area shape="rect" id="node5" href="$group___p_w_r___exported___macros.html" title="PWR Exported Macros" alt="" coords="333,208,490,235"/>
+<area shape="rect" id="node6" href="$group___p_w_r___exported___constants.html" title="PWR Exported Constants" alt="" coords="324,259,499,285"/>
+<area shape="rect" id="node7" href="$group___s_t_m32_f1xx___h_a_l___driver.html" title="STM32F1xx_HAL_Driver" alt="" coords="5,132,173,159"/>
+</map>

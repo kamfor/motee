@@ -1,0 +1,4 @@
+<map id="HAL Exported Macros" name="HAL Exported Macros">
+<area shape="rect" id="node1" href="$group___d_b_g_m_c_u___freeze___unfreeze.html" title="Freeze/Unfreeze Peripherals in Debug mode Note: On devices STM32F10xx8 and STM32F10xxB, STM32F101xC/D/E and STM32F103xC/D/E, STM32F101xF/G and STM32F103xF/G STM32F10xx4 and STM32F10xx6 Debug registers DBGMCU_IDCODE and DBGMCU_CR are accessible only in debug mode (not accessible by the user software in normal mode). Refer to errata sheet of these devices for more details. " alt="" coords="300,5,488,47"/>
+<area shape="rect" id="node2" href="$group___h_a_l.html" title="HAL module driver. " alt="" coords="5,13,53,39"/>
+</map>

@@ -1,0 +1,19 @@
+<map id="STM32F1xx_HAL_Driver" name="STM32F1xx_HAL_Driver">
+<area shape="rect" id="node1" href="$group___t_i_m_ex.html" title="TIM Extended HAL module driver. " alt="" coords="248,5,309,32"/>
+<area shape="rect" id="node2" href="$group___a_d_c_ex.html" title="ADC Extension HAL module driver. " alt="" coords="245,56,312,83"/>
+<area shape="rect" id="node3" href="$group___r_c_c_ex.html" title="RCCEx" alt="" coords="245,107,313,133"/>
+<area shape="rect" id="node4" href="$group___u_s_b___l_l.html" title="Low layer module for USB_FS and USB_OTG_FS drivers. " alt="" coords="221,157,336,184"/>
+<area shape="rect" id="node5" href="$group___h_a_l.html" title="HAL module driver. " alt="" coords="255,208,303,235"/>
+<area shape="rect" id="node6" href="$group___c_o_r_t_e_x.html" title="CORTEX HAL module driver. " alt="" coords="239,259,318,285"/>
+<area shape="rect" id="node7" href="$group___d_m_a.html" title="DMA HAL module driver. " alt="" coords="253,309,305,336"/>
+<area shape="rect" id="node8" href="$group___g_p_i_o_ex.html" title="GPIO HAL module driver. " alt="" coords="243,360,314,387"/>
+<area shape="rect" id="node9" href="$group___t_i_m.html" title="TIM HAL module driver. " alt="" coords="256,411,301,437"/>
+<area shape="rect" id="node10" href="$group___f_l_a_s_h_ex.html" title="FLASHEx" alt="" coords="238,461,319,488"/>
+<area shape="rect" id="node12" href="$group___a_d_c.html" title="ADC HAL module driver. " alt="" coords="253,512,304,539"/>
+<area shape="rect" id="node13" href="$group___g_p_i_o.html" title="GPIO HAL module driver. " alt="" coords="251,563,306,589"/>
+<area shape="rect" id="node14" href="$group___p_w_r.html" title="PWR HAL module driver. " alt="" coords="251,613,306,640"/>
+<area shape="rect" id="node15" href="$group___u_a_r_t.html" title="HAL UART module driver. " alt="" coords="249,664,308,691"/>
+<area shape="rect" id="node16" href="$group___r_c_c.html" title="RCC HAL module driver. " alt="" coords="253,715,305,741"/>
+<area shape="rect" id="node17" href="$group___d_m_a_ex.html" title="DMAEx" alt="" coords="245,765,313,792"/>
+<area shape="rect" id="node18" href="$group___f_l_a_s_h.html" title="FLASH" alt="" coords="246,816,311,843"/>
+</map>

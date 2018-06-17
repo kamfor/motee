@@ -1,0 +1,13 @@
+<map id="RCCEx Exported Macros" name="RCCEx Exported Macros">
+<area shape="rect" id="node2" href="$group___r_c_c_ex___peripheral___clock___enable___disable.html" title="Enable or disable the AHB1 peripheral clock. " alt="" coords="352,5,515,47"/>
+<area shape="rect" id="node4" href="$group___r_c_c_ex___a_p_b2___force___release___reset.html" title="Force or release APB2 peripheral reset. " alt="" coords="361,71,506,112"/>
+<area shape="rect" id="node5" href="$group___r_c_c_ex___a_p_b1___force___release___reset.html" title="Force or release APB1 peripheral reset. " alt="" coords="361,136,506,177"/>
+<area shape="rect" id="node6" href="$group___r_c_c_ex___a_p_b2___clock___enable___disable.html" title="Enable or disable the High Speed APB (APB2) peripheral clock. " alt="" coords="340,202,527,229"/>
+<area shape="rect" id="node7" href="$group___r_c_c_ex___a_p_b2___peripheral___clock___enable___disable___status.html" title="Get the enable or disable status of the APB2 peripheral clock. " alt="" coords="355,253,511,295"/>
+<area shape="rect" id="node8" href="$group___r_c_c_ex___a_p_b1___clock___enable___disable.html" title="Enable or disable the Low Speed APB (APB1) peripheral clock. " alt="" coords="340,319,527,346"/>
+<area shape="rect" id="node9" href="$group___r_c_c_ex___a_h_b1___peripheral___clock___enable___disable___status.html" title="Get the enable or disable status of the AHB1 peripheral clock. " alt="" coords="355,371,512,412"/>
+<area shape="rect" id="node10" href="$group___r_c_c_ex___h_s_e___configuration.html" title="HSE Configuration" alt="" coords="368,437,499,463"/>
+<area shape="rect" id="node11" href="$group___r_c_c_ex___peripheral___configuration.html" title="Macros to configure clock source of different peripherals. " alt="" coords="353,487,514,514"/>
+<area shape="rect" id="node12" href="$group___r_c_c_ex___a_p_b1___peripheral___clock___enable___disable___status.html" title="Get the enable or disable status of the APB1 peripheral clock. " alt="" coords="355,539,511,580"/>
+<area shape="rect" id="node3" href="$group___r_c_c_ex.html" title="RCCEx" alt="" coords="5,290,73,317"/>
+</map>

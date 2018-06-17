@@ -1,0 +1,11 @@
+<map id="Inc/gpio.h" name="Inc/gpio.h">
+<area shape="rect" id="node2" href="$motor_8h.html" title="this header file contains prototypes of functions for interface with dc motor driver and endcoder ..." alt="" coords="199,80,287,107"/>
+<area shape="rect" id="node5" href="$main_8c.html" title="Src/main.c" alt="" coords="175,229,261,256"/>
+<area shape="rect" id="node7" href="$adc_8c.html" title="Src/adc.c" alt="" coords="405,80,484,107"/>
+<area shape="rect" id="node8" href="$gpio_8c.html" title="Src/gpio.c" alt="" coords="508,80,589,107"/>
+<area shape="rect" id="node9" href="$tim_8c.html" title="Src/tim.c" alt="" coords="614,80,689,107"/>
+<area shape="rect" id="node10" href="$usart_8c.html" title="Src/usart.c" alt="" coords="713,80,800,107"/>
+<area shape="rect" id="node3" href="$communication_8h.html" title="this header file contains prototypes of functions for handling communication protocols ..." alt="" coords="21,155,164,181"/>
+<area shape="rect" id="node6" href="$motor_8c.html" title="this file contains functions for steering dc motor and getting value from encoder ..." alt="" coords="239,155,330,181"/>
+<area shape="rect" id="node4" href="$communication_8c.html" title="this file contains functions for handling communication protocols " alt="" coords="5,229,151,256"/>
+</map>

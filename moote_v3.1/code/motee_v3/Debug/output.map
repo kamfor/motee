@@ -6680,7 +6680,7 @@ LOAD /home/kamil/eclipse/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.
                 0x000000000000079f       0x1d /home/kamil/eclipse/plugins/fr.ac6.mcu.externaltools.arm-none.linux64_1.15.0.201708311556/tools/compiler/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7-m/crtn.o
 OUTPUT(motee_v3.elf elf32-littlearm)
 
-.debug_info     0x0000000000000000    0x293a3
+.debug_info     0x0000000000000000    0x2939f
  .debug_info    0x0000000000000000      0xee6 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
  .debug_info    0x0000000000000ee6     0x161b Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.o
  .debug_info    0x0000000000002501     0x147b Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
@@ -6702,19 +6702,19 @@ OUTPUT(motee_v3.elf elf32-littlearm)
  .debug_info    0x000000000001859d     0x1b00 Src/communication.o
  .debug_info    0x000000000001a09d      0xbca Src/dma.o
  .debug_info    0x000000000001ac67      0xc30 Src/gpio.o
- .debug_info    0x000000000001b897     0x1bf6 Src/main.o
- .debug_info    0x000000000001d48d     0x155b Src/motor.o
- .debug_info    0x000000000001e9e8      0x184 Src/pid.o
- .debug_info    0x000000000001eb6c      0xcbb Src/stm32f1xx_hal_msp.o
- .debug_info    0x000000000001f827     0x15c0 Src/stm32f1xx_it.o
- .debug_info    0x0000000000020de7      0xc1b Src/system_stm32f1xx.o
- .debug_info    0x0000000000021a02     0x1938 Src/tim.o
- .debug_info    0x000000000002333a     0x127b Src/usart.o
- .debug_info    0x00000000000245b5      0xe91 Src/usb_device.o
- .debug_info    0x0000000000025446     0x10d6 Src/usbd_cdc_if.o
- .debug_info    0x000000000002651c     0x20b8 Src/usbd_conf.o
- .debug_info    0x00000000000285d4      0xd59 Src/usbd_desc.o
- .debug_info    0x000000000002932d       0x76 startup/startup_stm32f103xb.o
+ .debug_info    0x000000000001b897     0x1bf2 Src/main.o
+ .debug_info    0x000000000001d489     0x155b Src/motor.o
+ .debug_info    0x000000000001e9e4      0x184 Src/pid.o
+ .debug_info    0x000000000001eb68      0xcbb Src/stm32f1xx_hal_msp.o
+ .debug_info    0x000000000001f823     0x15c0 Src/stm32f1xx_it.o
+ .debug_info    0x0000000000020de3      0xc1b Src/system_stm32f1xx.o
+ .debug_info    0x00000000000219fe     0x1938 Src/tim.o
+ .debug_info    0x0000000000023336     0x127b Src/usart.o
+ .debug_info    0x00000000000245b1      0xe91 Src/usb_device.o
+ .debug_info    0x0000000000025442     0x10d6 Src/usbd_cdc_if.o
+ .debug_info    0x0000000000026518     0x20b8 Src/usbd_conf.o
+ .debug_info    0x00000000000285d0      0xd59 Src/usbd_desc.o
+ .debug_info    0x0000000000029329       0x76 startup/startup_stm32f103xb.o
 
 .debug_abbrev   0x0000000000000000     0x569b
  .debug_abbrev  0x0000000000000000      0x2e5 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o

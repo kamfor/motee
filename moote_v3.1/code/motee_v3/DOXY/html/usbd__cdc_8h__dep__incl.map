@@ -1,0 +1,10 @@
+<map id="Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h" name="Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h">
+<area shape="rect" id="node2" href="$usbd__cdc__if_8h.html" title=": Header for usbd_cdc_if file. " alt="" coords="255,124,381,151"/>
+<area shape="rect" id="node6" href="$usb__device_8c.html" title="Src/usb_device.c" alt="" coords="394,213,517,240"/>
+<area shape="rect" id="node8" href="$usbd__cdc_8c.html" title="This file provides the high layer firmware functions to manage the following functionalities of the U..." alt="" coords="479,109,669,165"/>
+<area shape="rect" id="node9" href="$usbd__conf_8c.html" title=": This file implements the board support package for the USB device library " alt="" coords="693,124,810,151"/>
+<area shape="rect" id="node3" href="$communication_8h.html" title="this header file contains prototypes of functions for handling communication protocols ..." alt="" coords="76,213,219,240"/>
+<area shape="rect" id="node7" href="$usbd__cdc__if_8c.html" title=": " alt="" coords="243,213,369,240"/>
+<area shape="rect" id="node4" href="$communication_8c.html" title="this file contains functions for handling communication protocols " alt="" coords="5,288,151,315"/>
+<area shape="rect" id="node5" href="$main_8c.html" title="Src/main.c" alt="" coords="175,288,261,315"/>
+</map>

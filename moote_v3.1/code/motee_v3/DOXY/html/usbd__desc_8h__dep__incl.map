@@ -1,0 +1,5 @@
+<map id="Inc/usbd_desc.h" name="Inc/usbd_desc.h">
+<area shape="rect" id="node2" href="$usbd__cdc_8c.html" title="This file provides the high layer firmware functions to manage the following functionalities of the U..." alt="" coords="5,80,195,136"/>
+<area shape="rect" id="node3" href="$usb__device_8c.html" title="Src/usb_device.c" alt="" coords="219,95,341,121"/>
+<area shape="rect" id="node4" href="$usbd__desc_8c.html" title=": This file implements the USB Device descriptors " alt="" coords="365,95,485,121"/>
+</map>

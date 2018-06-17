@@ -1,0 +1,6 @@
+<map id="Inc/motor.h" name="Inc/motor.h">
+<area shape="rect" id="node2" href="$communication_8h.html" title="this header file contains prototypes of functions for handling communication protocols ..." alt="" coords="37,80,180,107"/>
+<area shape="rect" id="node4" href="$main_8c.html" title="Src/main.c" alt="" coords="175,155,261,181"/>
+<area shape="rect" id="node5" href="$motor_8c.html" title="this file contains functions for steering dc motor and getting value from encoder ..." alt="" coords="255,80,346,107"/>
+<area shape="rect" id="node3" href="$communication_8c.html" title="this file contains functions for handling communication protocols " alt="" coords="5,155,151,181"/>
+</map>

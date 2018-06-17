@@ -1,0 +1,6 @@
+<map id="_USBD_HandleTypeDef" name="_USBD_HandleTypeDef">
+<area shape="rect" id="node2" href="$struct_u_s_b_d___endpoint_type_def.html" title="USBD_EndpointTypeDef" alt="" coords="5,5,173,32"/>
+<area shape="rect" id="node3" href="$structusb__setup__req.html" title="usb_setup_req" alt="" coords="197,5,304,32"/>
+<area shape="rect" id="node4" href="$struct___device__cb.html" title="_Device_cb" alt="" coords="328,5,419,32"/>
+<area shape="rect" id="node5" href="$struct_u_s_b_d___descriptors_type_def.html" title="USBD_DescriptorsTypeDef" alt="" coords="443,5,627,32"/>
+</map>
